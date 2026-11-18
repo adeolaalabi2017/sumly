@@ -36,8 +36,9 @@ export default function OpenGraphImage() {
           <div style={{ display: "flex", fontSize: 44, fontWeight: 600 }}>Sumly</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 76, fontWeight: 600, lineHeight: 1.1 }}>
-            Professional tools, organized by domain
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 76, fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.03em" }}>
+            <div style={{ display: "flex" }}>Professional tools,</div>
+            <div style={{ display: "flex" }}>organized by domain</div>
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 32, color: "#adb0a7" }}>
             {`${TOOLS.length} free tools across ${DOMAINS.length} domains`}
