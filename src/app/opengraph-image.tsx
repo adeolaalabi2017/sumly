@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 import { DOMAINS, TOOLS } from "@/lib/registry";
 
@@ -5,7 +7,8 @@ export const alt = "Sumly: professional tools, organized by domain";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const outfit = await readFile(path.join(process.cwd(), "src/app/fonts/Outfit-Medium.woff"));
   return new ImageResponse(
     (
       <div
@@ -18,7 +21,7 @@ export default function OpenGraphImage() {
           padding: "72px",
           background: "#131412",
           color: "#f2f2ec",
-          fontFamily: "sans-serif",
+          fontFamily: "Outfit",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
@@ -33,10 +36,10 @@ export default function OpenGraphImage() {
               strokeLinejoin="round"
             />
           </svg>
-          <div style={{ display: "flex", fontSize: 44, fontWeight: 600 }}>Sumly</div>
+          <div style={{ display: "flex", fontSize: 44, fontWeight: 500 }}>Sumly</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", flexDirection: "column", fontSize: 76, fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.03em" }}>
+          <div style={{ display: "flex", flexDirection: "column", fontSize: 76, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.03em" }}>
             <div style={{ display: "flex" }}>Professional tools,</div>
             <div style={{ display: "flex" }}>organized by domain</div>
           </div>
@@ -46,6 +49,6 @@ export default function OpenGraphImage() {
         </div>
       </div>
     ),
-    { ...size }
+    { ...size, fonts: [{ name: "Outfit", data: outfit, weight: 500, style: "normal" }] }
   );
 }
