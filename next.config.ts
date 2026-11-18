@@ -37,6 +37,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: "standalone",
   poweredByHeader: false,
+  experimental: {
+    agentUpgrade: "security",
+  },
   turbopack: {
     root: path.resolve(__dirname),
   },
