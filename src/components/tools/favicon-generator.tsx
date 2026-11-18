@@ -172,7 +172,7 @@ export function FaviconGenerator() {
                   {monogram.slice(0, 1)}
                 </div>
                 <span className="truncate text-xs font-medium text-foreground">
-                  Utility Toolz — Fast in-browser tools
+                  Sumly — Fast in-browser tools
                 </span>
               </div>
               <div className="h-4 rounded-b-md bg-card border-x border-b border-border" />

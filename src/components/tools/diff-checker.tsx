@@ -95,7 +95,7 @@ Features:
 - 0 tracking or ads
 - Export as CSV or JSON`;
 
-const SAMPLE_B = `Utility Toolz Professional Platform
+const SAMPLE_B = `Sumly Professional Platform
 Version 1.2.0
 Author: Core Engineering & Product
 Domains:

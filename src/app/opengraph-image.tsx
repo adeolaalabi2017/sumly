@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { DOMAINS, TOOLS } from "@/lib/registry";
 
-export const alt = "Utility Toolz: professional tools, organized by domain";
+export const alt = "Sumly: professional tools, organized by domain";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -21,7 +21,7 @@ export default function OpenGraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 40, fontWeight: 600 }}>Utility Toolz</div>
+        <div style={{ display: "flex", fontSize: 40, fontWeight: 600 }}>Sumly</div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 76, fontWeight: 600, lineHeight: 1.1 }}>
             Professional tools, organized by domain

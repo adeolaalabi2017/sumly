@@ -1,5 +1,5 @@
 /**
- * Universal Export Utilities for Utility Toolz
+ * Universal Export Utilities for Sumly
  * Pure formatting + Client-side triggers.
  */
 

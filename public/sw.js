@@ -1,9 +1,9 @@
 // Bump CACHE_VERSION whenever the caching rules below change; activate() then
 // drops every cache from older versions.
 const CACHE_VERSION = "v2";
-const SHELL_CACHE = `utility-toolz-shell-${CACHE_VERSION}`;
-const PAGE_CACHE = `utility-toolz-pages-${CACHE_VERSION}`;
-const STATIC_CACHE = `utility-toolz-static-${CACHE_VERSION}`;
+const SHELL_CACHE = `sumly-shell-${CACHE_VERSION}`;
+const PAGE_CACHE = `sumly-pages-${CACHE_VERSION}`;
+const STATIC_CACHE = `sumly-static-${CACHE_VERSION}`;
 const CURRENT_CACHES = [SHELL_CACHE, PAGE_CACHE, STATIC_CACHE];
 
 const MAX_PAGES = 60;

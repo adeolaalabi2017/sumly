@@ -3,14 +3,14 @@ import { LegalPage } from "@/components/site/legal-page";
 
 export const metadata: Metadata = {
   title: "Terms of use",
-  description: "The terms for using Utility Toolz calculators and utilities.",
+  description: "The terms for using Sumly calculators and utilities.",
   alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
   return (
     <LegalPage title="Terms of use" updated="1 November 2026">
-      <p>By using Utility Toolz you agree to these terms.</p>
+      <p>By using Sumly you agree to these terms.</p>
 
       <h2>Use of the tools</h2>
       <ul>

@@ -30,7 +30,7 @@ export async function generateMetadata({
       canonical: `/${d.slug}`,
     },
     openGraph: {
-      title: `${d.name} Tools & Calculators — Utility Toolz`,
+      title: `${d.name} Tools & Calculators — Sumly`,
       description: d.description,
       type: "website",
       images: ["/opengraph-image"],
@@ -38,7 +38,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${d.name} Tools — Utility Toolz`,
+      title: `${d.name} Tools — Sumly`,
       description: d.description,
     },
   };

@@ -1,4 +1,4 @@
-// Prisma schema for Utility Toolz
+// Prisma schema for Sumly
 // Configured for PostgreSQL (Neon / Supabase)
 
 generator client {

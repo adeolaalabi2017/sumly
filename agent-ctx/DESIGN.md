@@ -1,4 +1,4 @@
-# Utility Toolz — Highlighter design language
+# Sumly — Highlighter design language
 
 Every tool is a machine with an input and an output. The design makes that the same on all of them, whether the output is a number, text, a table or a file. Target: WCAG 2.2 AA, keyboard-first, light and dark designed together. Rules use **must** (non-negotiable) or **should** (recommended).
 

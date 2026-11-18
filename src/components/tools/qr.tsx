@@ -68,7 +68,7 @@ function ColorField({ label, value, onChange }: { label: string; value: string; 
 // Inputs stay in component state, never in the URL: a Wi-Fi code holds a password.
 export function QrCodeGenerator() {
   const [kind, setKind] = React.useState("url");
-  const [url, setUrl] = React.useState("https://utilitytoolz.com");
+  const [url, setUrl] = React.useState("https://sumly.cc");
   const [text, setText] = React.useState("");
   const [wifi, setWifi] = React.useState({ ssid: "", password: "", security: "WPA" as WifiSecurity, hidden: false });
   const [contact, setContact] = React.useState<Contact>(EMPTY_CONTACT);

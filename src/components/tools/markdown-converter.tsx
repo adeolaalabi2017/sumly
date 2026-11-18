@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const SAMPLE_MD = `# Launch Strategy 2026
 
-We are releasing the **Utility Toolz** platform across **13 domains**.
+We are releasing the **Sumly** platform across **13 domains**.
 
 ## Key Objectives
 - Complete client-side calculation
@@ -15,7 +15,7 @@ We are releasing the **Utility Toolz** platform across **13 domains**.
 
 > "Simplicity is prerequisite for reliability." — Edsger W. Dijkstra
 
-Check the [documentation](https://utilitytoolz.example) for more details.`;
+Check the [documentation](https://sumly.cc) for more details.`;
 
 export function mdToHtml(md: string): string {
   let html = md

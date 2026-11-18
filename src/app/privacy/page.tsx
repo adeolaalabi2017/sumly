@@ -3,7 +3,7 @@ import { LegalPage } from "@/components/site/legal-page";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
-  description: "What Utility Toolz stores on your device and where your calculator inputs go.",
+  description: "What Sumly stores on your device and where your calculator inputs go.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -13,7 +13,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage title="Privacy policy" updated="1 November 2026">
       <p>
-        Utility Toolz is a set of calculators and utilities that run in your web browser. This page explains
+        Sumly is a set of calculators and utilities that run in your web browser. This page explains
         what information the site handles and why.
       </p>
 

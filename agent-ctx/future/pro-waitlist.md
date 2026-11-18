@@ -1,10 +1,10 @@
-# Parked feature: Utility Toolz Pro waitlist
+# Parked feature: Sumly Pro waitlist
 
 Removed from the site on 1 November 2026, to come back in a future update.
 Everything needed to restore it is below.
 
 ## What it did
-- A "Utility Toolz Pro · coming soon" band at the bottom of the home page: planned
+- A "Sumly Pro · coming soon" band at the bottom of the home page: planned
   $5/month plan with no ads, saved presets and CSV export on every calculator.
 - An email form that POSTs to `/api/waitlist`. It only showed "You're on the list"
   after the server saved the address.
@@ -169,7 +169,7 @@ function WaitlistForm() {
           <div className="grid items-start gap-10 lg:grid-cols-[1.4fr_1fr]">
             <div>
               <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#f0a469]">
-                <Crown className="h-4 w-4" aria-hidden /> Utility Toolz Pro · coming soon
+                <Crown className="h-4 w-4" aria-hidden /> Sumly Pro · coming soon
               </p>
               <h2 id="premium" className="mt-4 font-display text-3xl font-semibold tracking-tight text-[#fef5de] sm:text-4xl">
                 Ad-free, with your presets saved

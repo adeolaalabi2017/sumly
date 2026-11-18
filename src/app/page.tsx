@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DOMAINS, TOOLS } from "@/lib/registry";
 import { HomeEntry } from "./home-entry";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://utilitytoolz.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sumly.cc";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -13,13 +13,13 @@ const siteSchema = [
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Utility Toolz",
+    name: "Sumly",
     url: siteUrl,
   },
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Utility Toolz",
+    name: "Sumly",
     url: siteUrl,
     logo: `${siteUrl}/icon-512.png`,
     description: `Free professional calculators and utilities, ${TOOLS.length} tools across ${DOMAINS.length} domains.`,
