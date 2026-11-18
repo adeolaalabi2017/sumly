@@ -68,3 +68,14 @@ Tool and domain counts **must** come from the registry, never typed by hand. A c
 - [ ] `$12,345,678.00` fits at desktop and 390px with no horizontal overflow.
 - [ ] Typing letters into a calculator field shows an error and pauses Out.
 - [ ] Search opens via `⌘K` and `/`, filters, and navigates.
+
+## 8. Brand identity
+
+Benchmark: Editorial precision. Personality: precise and quietly confident. The mark is the highlighter idea made literal: a lime tile (the highlight) with one monoline ink "S" (the answer).
+
+- **Mark** (`public/icon.svg`, same file as `public/logo.svg`): lime `#d4f53c` tile, corner radius 28% of the width, ink `#111210` S with a stroke of 10% of the width and round caps. It is the same in light and dark because lime and ink hold contrast in both.
+- **Wordmark**: "Sumly" in Outfit 500, tracking `-0.03em`, sentence case, `text-foreground`. Never lime, never uppercase, never outlined.
+- **Lockup**: mark, then wordmark, with a gap of 0.4 × the mark height; the mark is 28px beside `text-2xl`. The mark alone is used where space is under 120px wide (favicon, app icon, avatar).
+- **Clear space**: at least 25% of the mark width on all sides. Minimum mark size 16px.
+- **Do not**: recolour the tile, put the mark on a lime background, add a shadow or gradient, or rotate it. The 28px header and footer mark is brand chrome and does not count against the one-highlighter-per-screen rule; larger uses of the mark do.
+- **Icons**: `icon-192.png` and `icon-512.png` are rendered from `icon.svg`. Re-render them if the mark changes.

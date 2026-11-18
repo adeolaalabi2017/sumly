@@ -12,6 +12,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-2" aria-label="Sumly home">
+              <img src="/icon.svg" alt="" aria-hidden width={28} height={28} className="size-7" />
               <span className="font-display text-2xl font-medium tracking-tight text-foreground">Sumly</span>
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-foreground/80 dark:text-foreground/85">
