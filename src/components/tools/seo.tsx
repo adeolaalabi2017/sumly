@@ -675,7 +675,7 @@ export function SchemaMarkupGenerator() {
   const [phone, setPhone] = React.useState("+1-555-0100");
   const [address, setAddress] = React.useState("220 Market St, San Francisco, CA 94103");
   const [faqs, setFaqs] = React.useState<FaqRow[]>([
-    { q: "Is Utility Toolz free to use?", a: "Yes — every tool is free to use." },
+    { q: "Is Sumly free to use?", a: "Yes — every tool is free to use." },
     { q: "Do I need an account?", a: "No. Every tool runs instantly in your browser without signup." },
   ]);
 

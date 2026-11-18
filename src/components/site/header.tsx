@@ -27,8 +27,9 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/75">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-2 px-4 sm:px-6">
         {/* Brand */}
-        <Link href="/" className="mr-2 flex min-h-11 items-center gap-2" aria-label="Utility Toolz home">
-          <span className="font-display text-2xl font-medium tracking-tight">Utility Toolz</span>
+        <Link href="/" className="mr-2 flex min-h-11 items-center gap-2" aria-label="Sumly home">
+          <img src="/icon.svg" alt="" aria-hidden width={28} height={28} className="size-7" />
+          <span className="font-display text-2xl font-medium tracking-tight">Sumly</span>
         </Link>
 
         {/* Desktop nav */}

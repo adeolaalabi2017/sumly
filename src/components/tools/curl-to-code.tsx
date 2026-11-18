@@ -4,7 +4,7 @@ import React, { useState, useMemo } from "react";
 import { Copy, Check, Terminal, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const SAMPLE_CURL = `curl -X POST https://api.utilitytoolz.example/v1/projects \\
+const SAMPLE_CURL = `curl -X POST https://api.sumly.cc/v1/projects \\
   -H "Authorization: Bearer sec_tok_984123" \\
   -H "Content-Type: application/json" \\
   -d '{"name": "Growth Sprint", "budget": 5000, "active": true}'`;

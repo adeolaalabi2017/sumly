@@ -5,11 +5,11 @@ import { Copy, Check, Share2, Globe, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function SocialSharePreview() {
-  const [title, setTitle] = useState("Utility Toolz — 100+ Professional In-Browser Tools");
+  const [title, setTitle] = useState("Sumly — 100+ Professional In-Browser Tools");
   const [description, setDescription] = useState(
     "A clean, domain-first suite of calculations, converters, and utilities for marketers, developers, accountants, and designers. 100% free and client-side."
   );
-  const [url, setUrl] = useState("https://utilitytoolz.example");
+  const [url, setUrl] = useState("https://sumly.cc");
   const [imageUrl, setImageUrl] = useState("https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=630&fit=crop");
   const [platform, setPlatform] = useState<"twitter" | "linkedin" | "facebook">("twitter");
   const [copied, setCopied] = useState(false);

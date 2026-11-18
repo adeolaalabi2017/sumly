@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 export function JsonFormatter() {
   const [input, setInput] = React.useState(
-    '{"site":"Utility Toolz","domains":12,"tools":{"live":119,"roadmap":119},"tags":["seo","finance","developer"],"pricing":{"price":0,"currency":"USD"}}'
+    '{"site":"Sumly","domains":12,"tools":{"live":119,"roadmap":119},"tags":["seo","finance","developer"],"pricing":{"price":0,"currency":"USD"}}'
   );
   const [indent, setIndent] = React.useState("2");
 
@@ -347,7 +347,7 @@ function decodeBase64(s: string): { text: string; error: string | null } {
 export function Base64EncoderDecoder() {
   const [mode, setMode] = React.useState("encode");
   const [variant, setVariant] = React.useState("standard");
-  const [input, setInput] = React.useState("Hello, Utility Toolz — café edition!");
+  const [input, setInput] = React.useState("Hello, Sumly — café edition!");
 
   const urlSafe = variant === "urlsafe";
   const output = mode === "encode" ? encodeBase64(input, urlSafe) : "";
@@ -434,7 +434,7 @@ const URL_SCOPES = [
 export function UrlEncoderDecoder() {
   const [mode, setMode] = React.useState("encode");
   const [scope, setScope] = React.useState("component");
-  const [input, setInput] = React.useState("https://utilitytoolz.example/search?q=unit converter&lang=en");
+  const [input, setInput] = React.useState("https://sumly.cc/search?q=unit converter&lang=en");
 
   const output = React.useMemo(() => {
     if (mode === "decode") {

@@ -13,7 +13,7 @@ const CHANNEL_PRESETS = [
 ];
 
 export function UtmBuilder() {
-  const [baseUrl, setBaseUrl] = useState("https://utilitytoolz.example/signup");
+  const [baseUrl, setBaseUrl] = useState("https://sumly.cc/signup");
   const [source, setSource] = useState("google");
   const [medium, setMedium] = useState("cpc");
   const [campaign, setCampaign] = useState("q4_growth");

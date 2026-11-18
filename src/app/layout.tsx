@@ -25,7 +25,7 @@ const outfit = Outfit({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://utilitytoolz.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sumly.cc";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -42,15 +42,15 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Utility Toolz",
+    title: "Sumly",
   },
   icons: {
     icon: "/icon.svg",
     apple: "/icon-192.png",
   },
   title: {
-    default: "Utility Toolz — Professional tools, organized by domain",
-    template: "%s | Utility Toolz",
+    default: "Sumly — Professional tools, organized by domain",
+    template: "%s | Sumly",
   },
   description:
     `Free professional calculators and utilities for finance, marketing, business, developers and students. ${TOOL_COUNT} tools across ${DOMAIN_COUNT} domains.`,
@@ -72,12 +72,12 @@ export const metadata: Metadata = {
     "password generator",
     "professional tools",
   ],
-  authors: [{ name: "Utility Toolz" }],
+  authors: [{ name: "Sumly" }],
   openGraph: {
-    title: "Utility Toolz — Professional tools, organized by domain",
+    title: "Sumly — Professional tools, organized by domain",
     description:
       `Every tool your work needs — organized by professional domain, not buried in a random list. ${TOOL_COUNT} tools across finance, marketing, advertising, business, SEO, content, design, data, development, productivity, education and everyday utilities.`,
-    siteName: "Utility Toolz",
+    siteName: "Sumly",
     type: "website",
     url: siteUrl,
   },

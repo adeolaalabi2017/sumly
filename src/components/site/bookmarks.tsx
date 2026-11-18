@@ -6,8 +6,10 @@ import { Star } from "lucide-react";
 import type { Tool } from "@/lib/registry/types";
 import { toolBySlug } from "@/lib/registry";
 import { cn } from "@/lib/utils";
+import { getWithLegacy } from "@/lib/storage";
 
-const STORAGE_KEY = "utility_toolz_favorites";
+const STORAGE_KEY = "sumly_favorites";
+const LEGACY_KEY = "utility_toolz_favorites";
 const EMPTY: string[] = [];
 
 /* One shared store, so starring a card updates every star and the pinned bar at once. */
@@ -17,7 +19,7 @@ const listeners = new Set<() => void>();
 function read(): string[] {
   if (cache) return cache;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = getWithLegacy(localStorage, STORAGE_KEY, LEGACY_KEY);
     const parsed = raw ? JSON.parse(raw) : [];
     cache = Array.isArray(parsed) ? parsed.filter((s): s is string => typeof s === "string") : [];
   } catch {

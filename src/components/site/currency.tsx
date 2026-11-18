@@ -12,8 +12,10 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { getWithLegacy } from "@/lib/storage";
 
-const STORAGE_KEY = "utility_toolz_currency";
+const STORAGE_KEY = "sumly_currency";
+const LEGACY_KEY = "utility_toolz_currency";
 
 const CurrencyContext = React.createContext<{
   code: string;
@@ -31,7 +33,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
 
   React.useEffect(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const stored = getWithLegacy(localStorage, STORAGE_KEY, LEGACY_KEY);
       if (stored && CURRENCIES.some((c) => c.code === stored) && stored !== getCurrency()) {
         setCurrency(stored);
         setCodeState(stored);

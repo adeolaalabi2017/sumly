@@ -11,8 +11,9 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2" aria-label="Utility Toolz home">
-              <span className="font-display text-2xl font-medium tracking-tight text-foreground">Utility Toolz</span>
+            <Link href="/" className="flex items-center gap-2" aria-label="Sumly home">
+              <img src="/icon.svg" alt="" aria-hidden width={28} height={28} className="size-7" />
+              <span className="font-display text-2xl font-medium tracking-tight text-foreground">Sumly</span>
             </Link>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-foreground/80 dark:text-foreground/85">
               Professional tools organized by domain — finance, marketing, advertising, business
@@ -81,7 +82,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/80 pt-6 text-xs text-foreground/75 dark:text-foreground/80 sm:flex-row">
-          <p>© {new Date().getFullYear()} Utility Toolz. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Sumly. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="inline-flex min-h-10 items-center hover:text-foreground hover:underline">
               Privacy

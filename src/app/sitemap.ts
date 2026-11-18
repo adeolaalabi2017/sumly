@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { DOMAINS, PROFESSIONS, TOOLS } from "@/lib/registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://utilitytoolz.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sumly.cc";
 
   // Root landing page
   const rootRoute: MetadataRoute.Sitemap = [

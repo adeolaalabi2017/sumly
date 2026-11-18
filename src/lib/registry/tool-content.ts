@@ -3523,7 +3523,7 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
       "The quiet zone is the blank border scanners need to find the code. Keep the standard 4 modules unless the code will sit on a plain light background anyway.",
     ],
     example:
-      "The generator opens with https://utilitytoolz.com at Medium error correction, which makes a 25 × 25 grid. Download it as a 1024-pixel PNG for screens, or as SVG to print it at any size without blur.",
+      "The generator opens with https://sumly.cc at Medium error correction, which makes a 25 × 25 grid. Download it as a 1024-pixel PNG for screens, or as SVG to print it at any size without blur.",
     faqs: [
       {
         q: "Do these QR codes expire?",

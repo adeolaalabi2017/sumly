@@ -4,7 +4,7 @@ import { TOOLS, toolBySlug } from "@/lib/registry";
 import { TOOL_CONTENT } from "@/lib/registry/tool-content";
 import { ToolPage } from "@/components/pages/tool-page";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://utilitytoolz.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sumly.cc";
 
 export function generateStaticParams() {
   return TOOLS.map((t) => ({
@@ -39,7 +39,7 @@ export async function generateMetadata({
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${t.name} — Utility Toolz`,
+      title: `${t.name} — Sumly`,
       description,
       type: "website",
       images: ["/opengraph-image"],
@@ -47,7 +47,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${t.name} — Utility Toolz`,
+      title: `${t.name} — Sumly`,
       description: t.tagline,
     },
   };
