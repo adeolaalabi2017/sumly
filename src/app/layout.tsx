@@ -7,6 +7,7 @@ import { SearchProvider } from "@/components/site/search-dialog";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { PwaRegister } from "@/components/site/pwa-register";
+import { Analytics } from "@/components/site/analytics";
 import { CurrencyProvider } from "@/components/site/currency";
 import { DOMAINS, TOOLS } from "@/lib/registry";
 
@@ -111,6 +112,7 @@ export default function RootLayout({
           </CurrencyProvider>
           <Toaster />
           <PwaRegister />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

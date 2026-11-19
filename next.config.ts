@@ -7,15 +7,17 @@ const isDev = process.env.NODE_ENV !== "production";
 // theme script and the JSON-LD blocks can't carry a per-request nonce; that is
 // why script-src keeps 'unsafe-inline'. img-src allows https: because the
 // social share preview loads whatever image URL the visitor types in.
+// Cloudflare Web Analytics loads its beacon from static.cloudflareinsights.com and
+// reports to cloudflareinsights.com.
 // When AdSense goes live its domains need adding to script-src, img-src,
 // connect-src and frame-src.
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  `connect-src 'self' blob: data:${isDev ? " ws:" : ""}`,
+  `connect-src 'self' blob: data: https://cloudflareinsights.com${isDev ? " ws:" : ""}`,
   "worker-src 'self'",
   "manifest-src 'self'",
   "object-src 'none'",
