@@ -36,6 +36,13 @@ export default function PrivacyPage() {
       </ul>
       <p>You can clear these at any time by clearing this site&apos;s data in your browser.</p>
 
+      <h2>Analytics</h2>
+      <p>
+        We use Cloudflare Web Analytics to count visits and see which pages are popular. It does not use
+        cookies, does not track you across sites and does not build a profile of you. It records page views,
+        referrers, browser and country in aggregate.
+      </p>
+
       <h2>Advertising</h2>
       <p>
         The free tools may be supported by advertising. If ads are enabled, an advertising provider such as
