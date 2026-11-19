@@ -55,7 +55,7 @@ export function useToolState<T extends Record<string, string | number | boolean>
   // Apply share-link params after hydration but before paint, so defaults never flash
   useLayoutEffect(() => {
     const fromUrl = readUrlState(defaults);
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- URL is only readable after hydration
+    // URL is only readable after hydration
     if (fromUrl) setStateInternal(fromUrl);
     // Defaults are usually inline literals; read the URL once on mount
   }, []);

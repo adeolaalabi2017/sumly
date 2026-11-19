@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sumly",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": { "enabled": true },
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "sumly-cache"
+    }
+  ],
+  "vars": {
+    "NEXT_PUBLIC_SITE_URL": "https://sumly.cc"
+  },
+  "routes": [
+    { "pattern": "sumly.cc", "custom_domain": true },
+    { "pattern": "www.sumly.cc", "custom_domain": true }
+  ]
+}

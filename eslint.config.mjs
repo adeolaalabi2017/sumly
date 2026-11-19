@@ -19,6 +19,8 @@ const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, {
     // React rules
     "react-hooks/exhaustive-deps": "off",
     "react-hooks/purity": "off",
+    // Mount-time reads of localStorage / matchMedia are intentional (hydration-safe).
+    "react-hooks/set-state-in-effect": "off",
     "react/no-unescaped-entities": "off",
     "react/display-name": "off",
     "react/prop-types": "off",
@@ -44,7 +46,7 @@ const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, {
     "no-useless-escape": "off",
   },
 }, {
-  ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts", "examples/**", "skills", "scripts/**", "download/**", "upload/**", "agent-ctx/**", "mini-services/**", "db/**"]
+  ignores: ["node_modules/**", ".next/**", ".claude/**","out/**", "build/**", "next-env.d.ts", "examples/**", "skills", "scripts/**", "download/**", "upload/**", "agent-ctx/**", "mini-services/**", "db/**"]
 }];
 
 export default eslintConfig;

@@ -53,3 +53,7 @@ prompt
 server.log
 # Skills directory
 /skills/
+# OpenNext / Cloudflare
+/.open-next/
+.wrangler/
+.dev.vars
