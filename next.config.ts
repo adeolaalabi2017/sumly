@@ -45,12 +45,22 @@ const nextConfig: NextConfig = {
   },
   reactStrictMode: false,
   async redirects() {
-    // These tools lived under Education before the Math domain existed.
-    return ["percentage-calculator", "fraction-calculator", "sig-fig-calculator"].map((slug) => ({
-      source: `/education/${slug}`,
-      destination: `/math/${slug}`,
+    // www and the apex hit the same Worker; send www to the canonical host.
+    const wwwToApex = {
+      source: "/:path*",
+      has: [{ type: "host" as const, value: "www.sumly.cc" }],
+      destination: "https://sumly.cc/:path*",
       permanent: true,
-    }));
+    };
+    // These tools lived under Education before the Math domain existed.
+    return [
+      wwwToApex,
+      ...["percentage-calculator", "fraction-calculator", "sig-fig-calculator"].map((slug) => ({
+        source: `/education/${slug}`,
+        destination: `/math/${slug}`,
+        permanent: true,
+      })),
+    ];
   },
   async headers() {
     return [
