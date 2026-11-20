@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { DOMAINS, domainBySlug } from "@/lib/registry";
 import { DomainHub } from "@/components/pages/domain-hub";
+import { breadcrumbSchema, jsonLd } from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return DOMAINS.map((d) => ({
@@ -56,5 +57,15 @@ export default async function DomainPage({
     notFound();
   }
 
-  return <DomainHub domainSlug={slug} />;
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: d.name, path: `/${d.slug}` },
+  ]);
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbs) }} />
+      <DomainHub domainSlug={slug} />
+    </>
+  );
 }
