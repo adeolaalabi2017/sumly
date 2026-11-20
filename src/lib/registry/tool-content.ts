@@ -9,6 +9,15 @@ import type { ToolContent } from "./types";
  */
 export const TOOL_CONTENT: Record<string, ToolContent> = {
   "budget-expense-calculator": {
+    steps: [
+      { label: "Take-home income", working: "Monthly pay after tax", result: "$4,200" },
+      { label: "Needs share", working: "$2,390 ÷ $4,200 (target 50%)", result: "56.9%" },
+      { label: "Wants share", working: "$590 ÷ $4,200 (target 30%)", result: "14.0%" },
+      { label: "Savings share", working: "$700 ÷ $4,200 (target 20%)", result: "16.7%" },
+      { label: "Unallocated", working: "$4,200 − $2,390 − $590 − $700", result: "$520" },
+      { label: "Needs above the 50% line", working: "$2,390 − 50% × $4,200", result: "$290" },
+      { label: "Savings short of 20%", working: "20% × $4,200 − $700", result: "$140" },
+    ],
     howItWorks: [
       "Your expenses are grouped the way the 50/30/20 rule sees them: needs (housing, utilities, groceries, transport, insurance), wants (dining, entertainment, shopping) and savings or extra debt payments.",
       "Each group is compared against its benchmark — 50% of take-home income for needs, 30% for wants and 20% for savings — with the marker on each bar showing the target.",
@@ -858,6 +867,15 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "invoice-generator": {
+    steps: [
+      { label: "Design", working: "1 × $1,800", result: "$1,800" },
+      { label: "Copywriting", working: "6 × $180", result: "$1,080" },
+      { label: "Analytics", working: "2 × $240", result: "$480" },
+      { label: "Subtotal", working: "$1,800 + $1,080 + $480", result: "$3,360" },
+      { label: "Tax at 8.5%", working: "$3,360 × 0.085", result: "$285.60" },
+      { label: "Total due", working: "$3,360 + $285.60", result: "$3,645.60" },
+      { label: "Due date", working: "Issue date + 14 days (Net 14)", result: "14 days after issue" },
+    ],
     howItWorks: [
       "Each line item multiplies quantity by rate, and the subtotal is the sum of those amounts. Tax applies to the subtotal in one step — no compounding surprises.",
       "The due date is the issue date plus your payment terms (Net 14 by default). The whole invoice recalculates live as you edit any field.",
@@ -1999,6 +2017,14 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "grade-calculator": {
+    steps: [
+      { label: "Points already earned", working: "82% × 60% weight", result: "49.2" },
+      { label: "Points still needed for 85%", working: "85 − 49.2", result: "35.8" },
+      { label: "Final exam weight", working: "100% − 60%", result: "40%" },
+      { label: "Score needed on the final", working: "35.8 ÷ 0.40", result: "89.5%" },
+      { label: "Best case, 100% on the final", working: "49.2 + 100% × 40%", result: "89.2%" },
+      { label: "Score needed for a 90% course grade", working: "(90 − 49.2) ÷ 0.40", result: "102%, out of reach" },
+    ],
     howItWorks: [
       "Your course grade is a weighted blend: current grade × completed weight + final exam score × final weight. The calculator solves that equation for the final.",
       "Weights must total 100% — if coursework so far counts for 60%, the final is the remaining 40%. The hint shows the remainder as you type.",
@@ -2137,6 +2163,14 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "age-calculator": {
+    steps: [
+      { label: "Whole years", working: "June 15, 1995 to June 15, 2026", result: "31 years" },
+      { label: "Whole months", working: "June 15 to October 15, 2026", result: "4 months" },
+      { label: "Remaining days", working: "October 15 to October 31", result: "16 days" },
+      { label: "Total days lived", working: "June 15, 1995 to October 31, 2026", result: "11,461 days" },
+      { label: "Day of the week born", working: "June 15, 1995", result: "Thursday" },
+      { label: "Next birthday", working: "June 15, 2027, counted from October 31, 2026", result: "227 days away" },
+    ],
     howItWorks: [
       "Age is calendar arithmetic, not decimal division: from June 15 1995 to October 31 2026 is 31 years, 4 months, 16 days — months borrow from years and days borrow from the previous month's length.",
       "Totals flatten the same span into months, weeks and days — 11,461 days in the worked example — the figure insurance forms and 'days on earth' posts actually want.",
@@ -2191,10 +2225,19 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "unit-converter": {
+    steps: [
+      { label: "Start in the base unit", working: "1 metre is the base for length", result: "1 m" },
+      { label: "Feet", working: "1 ÷ 0.3048", result: "3.28084 ft" },
+      { label: "Yards", working: "1 ÷ 0.9144", result: "1.09361 yd" },
+      { label: "Miles", working: "1 ÷ 1,609.344", result: "0.000621371 mi" },
+      { label: "Millimetres", working: "1 × 1,000", result: "1,000 mm" },
+      { label: "1 GB in GiB", working: "1,000,000,000 ÷ 1,073,741,824", result: "0.931323 GiB" },
+      { label: "A '1 TB' drive in GiB", working: "1,000,000,000,000 ÷ 1,073,741,824", result: "931 GiB" },
+    ],
     howItWorks: [
       "Every unit is defined against a base — meters, kilograms, liters, bytes — by an exact factor: 1 inch is 0.0254 m by international agreement, not an approximation.",
       "The value converts to the base once, then fans out to every unit in the family; the row for your input unit reads back your value as a built-in checksum.",
-      "Data storage shows both decimal (KB = 1000 B, what drive makers quote) and binary (KiB = 1024 B, what operating systems report) — the reason a '1 TB' drive shows about 909 TiB.",
+      "Data storage shows both decimal (KB = 1000 B, what drive makers quote) and binary (KiB = 1024 B, what operating systems report) — the reason a '1 TB' drive shows as about 931 GiB (0.91 TiB).",
     ],
     example:
       "1 meter fans out to 3.28084 feet, 1.09361 yards, 0.000621371 miles and 1,000 millimeters at once — no swapping the from-unit and re-converting. Switch to Data storage and 1 GB reads 0.931323 GiB.",
@@ -3643,6 +3686,14 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "paint-calculator": {
+    steps: [
+      { label: "Wall perimeter", working: "2 × (4 m + 3.5 m)", result: "15 m" },
+      { label: "Wall area before openings", working: "15 m × 2.4 m", result: "36 m²" },
+      { label: "Take off a door and a window", working: "36 − 1.9 − 1.5", result: "32.6 m²" },
+      { label: "Area for two coats", working: "32.6 × 2", result: "65.2 m²" },
+      { label: "Paint needed", working: "65.2 ÷ 10 m² per litre", result: "6.52 L" },
+      { label: "Tins to buy", working: "Cheapest mix that covers 6.52 L", result: "5 L + 2.5 L (7.5 L)" },
+    ],
     howItWorks: [
       "The wall area is the room's perimeter times the wall height, less a typical door (1.9 m², about 20 ft²) and window (1.5 m², about 16 ft²) for each one you enter. The ceiling's length × width is added if you include it.",
       "Paint needed is the area times the number of coats, divided by the coverage printed on the tin. Most interior emulsions cover 10–12 m² per litre, or 350–400 ft² per US gallon.",
@@ -3712,6 +3763,12 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "concrete-calculator": {
+    steps: [
+      { label: "Slab volume", working: "3 m × 3 m × 0.10 m", result: "0.9 m³" },
+      { label: "Add 10% for waste", working: "0.9 × 1.10", result: "0.99 m³" },
+      { label: "Weight of concrete", working: "0.99 m³ × 2,100 kg per m³", result: "2,079 kg" },
+      { label: "25 kg bags", working: "2,079 ÷ 25 = 83.2, rounded up", result: "84 bags" },
+    ],
     howItWorks: [
       "A slab, path or footing is length × width × thickness. Round post holes are π × radius² × depth for each hole.",
       "An allowance is added for spillage, formwork that bows and uneven ground: 10% is standard.",
