@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/site/legal-page";
+import { LEGAL_UPDATED, formatLongDate } from "@/lib/legal-dates";
 
 export const metadata: Metadata = {
   title: "Privacy policy",
@@ -11,7 +12,7 @@ const contact = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy policy" updated="1 November 2026">
+    <LegalPage title="Privacy policy" updated={formatLongDate(LEGAL_UPDATED.privacy)}>
       <p>
         Sumly is a set of calculators and utilities that run in your web browser. This page explains
         what information the site handles and why.
