@@ -121,6 +121,7 @@ export function PasswordGenerator() {
               max={64}
               step={1}
               onValueChange={([val]) => setLength(val)}
+              aria-label="Password length"
               className="py-2"
             />
           </div>
