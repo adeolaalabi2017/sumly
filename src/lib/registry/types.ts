@@ -48,11 +48,22 @@ export interface Tool {
 }
 
 /** Tool-page copy, stored separately from Tool so it only ships with its own page. */
+export interface WorkedStep {
+  /** What this step finds, e.g. "Monthly rate" */
+  label: string;
+  /** The working with the example's numbers substituted in */
+  working: string;
+  /** The figure the step produces */
+  result: string;
+}
+
 export interface ToolContent {
   /** 2-4 short paragraphs explaining the method */
   howItWorks: string[];
   /** Narrated worked example (the tool itself ships preloaded with the same values) */
   example: string;
+  /** Optional step-by-step working of the same example, one row per calculation */
+  steps?: WorkedStep[];
   faqs: Faq[];
 }
 
