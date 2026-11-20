@@ -24,3 +24,7 @@
 # Next emits the Open Graph image without a file extension.
 /opengraph-image
   Content-Type: image/png
+
+# Per-tool Open Graph images are also emitted without a file extension.
+/:domain/:tool/opengraph-image
+  Content-Type: image/png
