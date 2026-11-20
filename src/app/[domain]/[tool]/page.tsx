@@ -42,7 +42,6 @@ export async function generateMetadata({
       title: `${t.name} — Sumly`,
       description,
       type: "website",
-      images: ["/opengraph-image"],
       url: canonicalUrl,
     },
     twitter: {
