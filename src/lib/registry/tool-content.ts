@@ -69,6 +69,26 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
         q: "Can I use this for car loans or student loans?",
         a: "Yes. Any fixed-rate, fully amortizing loan works: enter the amount, rate and term regardless of loan type.",
       },
+      {
+        q: "What is the difference between APR and the interest rate?",
+        a: "The interest rate sets your monthly payment. APR rolls fees and closing costs into a yearly cost so you can compare lenders. Enter the note (interest) rate here, not the APR, or the payment will come out too high.",
+      },
+      {
+        q: "How much does a 1% lower rate save?",
+        a: "On this example, dropping from 6.25% to 5.25% cuts the payment from $2,155 to $1,933, about $222 a month, and saves roughly $80,000 in interest over 30 years. Small rate differences matter a lot on long loans.",
+      },
+      {
+        q: "Is a 15-year mortgage better than a 30-year?",
+        a: "A shorter term costs far less interest but needs a bigger payment. At the same 6.25% rate, a 15-year loan on $350,000 is about $3,001 a month and $190,000 in interest, versus $2,155 and $426,000 over 30 years. Run both and see what your budget can carry.",
+      },
+      {
+        q: "Do biweekly payments really help?",
+        a: "Paying half the monthly amount every two weeks makes 26 half-payments, equal to 13 full payments a year. On this example that is roughly $95,000 less interest and about 5.7 years off the loan. How much you gain depends on how your lender applies the payments, so check before switching.",
+      },
+      {
+        q: "Will extra payments reduce principal or just prepay interest?",
+        a: "Tell your lender to apply extra money to principal, otherwise some servicers hold it toward the next due date. Also check your loan for prepayment penalties before paying ahead.",
+      },
     ],
   },
   "investment-calculator": {
@@ -131,6 +151,26 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
       {
         q: "Can I model a one-time deposit only?",
         a: "Set the monthly contribution to zero and the calculator reduces to the classic compound interest formula.",
+      },
+      {
+        q: "What is the Rule of 72?",
+        a: "Divide 72 by your annual rate to estimate how many years it takes to double your money. At 7%, 72 ÷ 7 is about 10.3 years (the exact figure is 10.2). It is a quick mental check on any rate.",
+      },
+      {
+        q: "How is compound interest different from simple interest?",
+        a: "Simple interest pays only on your original amount. Compound interest also pays on past interest. On $10,000 at 7% for 20 years, simple interest gives $24,000 while compounding annually gives about $38,697.",
+      },
+      {
+        q: "How much do I need to save each month to reach $1 million?",
+        a: "At a 7% return compounded monthly, about $820 a month for 30 years, or about $1,920 a month for 20 years, with no starting balance. Set the target balance by adjusting the contribution until the result matches.",
+      },
+      {
+        q: "Is starting early really that important?",
+        a: "Yes. Contributing $300 a month at 7% grows to about $156,000 in 20 years but about $366,000 in 30 years, so 50% more time gives more than twice the money. The last decade does most of the work.",
+      },
+      {
+        q: "What is the difference between APR and APY?",
+        a: "APR is the stated annual rate. APY includes the effect of compounding within the year. A 7% rate compounded monthly has an APY of about 7.23%.",
       },
     ],
   },
@@ -213,6 +253,22 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
         q: "Why separate gross margin from net margin?",
         a: "They answer different questions. Gross margin says your product or service makes money; net margin says the whole operation does. A great gross margin with a terrible net margin is an overhead problem, not a pricing one.",
       },
+      {
+        q: "What is the difference between EBIT and EBITDA?",
+        a: "EBIT is operating profit before interest and tax. EBITDA also adds back depreciation and amortization, which are non-cash charges. This calculator stops at EBIT and treats interest and one-offs as other expenses.",
+      },
+      {
+        q: "What tax rate should I enter?",
+        a: "Your effective rate on business profit, which depends on your country, business structure and deductions. The 21% in the example is only an illustration. Check with an accountant before relying on the net figure.",
+      },
+      {
+        q: "Can I use this for a month, a quarter or a year?",
+        a: "Yes. Use the same period for revenue and all costs, and compare like with like. Monthly figures swing more, so look at trailing totals as well.",
+      },
+      {
+        q: "Is net profit the same as cash in the bank?",
+        a: "No. A profit and loss statement is about earnings, not cash. Customers who pay late, inventory you have bought, loan repayments and owner withdrawals all change cash without changing profit.",
+      },
     ],
   },
   "currency-converter": {
@@ -294,6 +350,22 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
         q: "How is this different from ROAS?",
         a: "ROAS is revenue ÷ spend — a platform metric. ROI accounts for what that revenue actually earns after costs. A 4x ROAS at a 20% margin is losing money; the two numbers together tell the truth.",
       },
+      {
+        q: "What spend should I include?",
+        a: "Everything it took to run the campaign: media spend, agency or freelancer fees, creative production, tools and the time of anyone working on it. Counting only ad spend overstates the return.",
+      },
+      {
+        q: "At what margin does a campaign break even?",
+        a: "When margin equals spend ÷ revenue. In the example, $12,000 spent for $60,000 of revenue breaks even at a 20% margin. Below that, the same campaign loses money however good the revenue looks.",
+      },
+      {
+        q: "How do I treat repeat customers from one campaign?",
+        a: "For one-off ROI, count only the first order. If your goal is acquiring customers, use their expected lifetime profit instead, which is what the LTV calculator estimates.",
+      },
+      {
+        q: "What if sales come days or weeks after the click?",
+        a: "Use a reporting window at least as long as your typical buying cycle. Cutting the window short undercounts revenue and makes slow-burn channels such as email, SEO and content look worse than they are.",
+      },
     ],
   },
   "campaign-performance-calculator": {
@@ -345,6 +417,22 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
       {
         q: "How do I lower CAC without cutting spend?",
         a: "Raise conversion rate at any funnel stage, improve targeting to cut wasted impressions, or shift mix toward channels with longer-lived assets like SEO and referrals.",
+      },
+      {
+        q: "What is the difference between CAC and CPA?",
+        a: "CPA is the cost of any conversion you define, such as a lead or an add-to-cart. CAC is the full cost of winning one paying customer. Several CPAs usually sit between ad click and CAC.",
+      },
+      {
+        q: "How does CAC relate to LTV?",
+        a: "CAC only means something next to what a customer is worth. A common target is LTV at least 3 times CAC. At the $400 CAC in this example, that means a customer lifetime profit of $1,200 or more.",
+      },
+      {
+        q: "What is blended CAC versus paid CAC?",
+        a: "Blended CAC divides all acquisition spend by all new customers, including organic and referral ones. Paid CAC counts only customers from paid channels against paid spend. Blended is steadier, paid is better for choosing channels.",
+      },
+      {
+        q: "How do I count free-trial users?",
+        a: "Count the people who become paying customers, and include trial costs in spend. Counting signups instead of payers makes CAC look far lower than it is.",
       },
     ],
   },
@@ -472,6 +560,22 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
         q: "What if customers stay for decades?",
         a: "Cap the horizon at something defensible — many analysts model 3–5 years regardless, because discounting, competition and behaviour change make decade-long assumptions fragile.",
       },
+      {
+        q: "How do I calculate LTV for a subscription?",
+        a: "Multiply monthly revenue per customer by gross margin, then divide by monthly churn. At $50 a month, an 80% margin and 4% monthly churn, LTV is $50 × 0.80 ÷ 0.04 = $1,000.",
+      },
+      {
+        q: "What LTV:CAC ratio should I aim for?",
+        a: "About 3:1 is the usual benchmark. Below roughly 1.5:1 you lose money on growth, and far above 5:1 you may be under-investing. In this example a $2,210 LTV supports a CAC of up to about $737 at 3:1.",
+      },
+      {
+        q: "What is the difference between customer churn and revenue churn?",
+        a: "Customer churn counts customers lost. Revenue churn counts revenue lost, including downgrades. Revenue churn can be lower than customer churn if the customers who stay spend more, so use the one that matches how you measure LTV.",
+      },
+      {
+        q: "How can I raise LTV?",
+        a: "Four levers: keep customers longer, raise order value, sell more often, and improve margin. Retention is usually the strongest, because lifespan is 1 ÷ churn and a small drop in churn lengthens it a lot.",
+      },
     ],
   },
   "cpc-calculator": {
@@ -575,6 +679,22 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
       {
         q: "Is ROAS the same as ROI?",
         a: "No. ROAS compares revenue to spend; ROI compares profit to spend after margin. A 4x ROAS at a 20% margin is an ROI of −20% — the difference that separates buyers from optimizers.",
+      },
+      {
+        q: "How do I work out my break-even ROAS?",
+        a: "Divide 1 by your gross margin. A 40% margin needs 2.5x, a 25% margin needs 4x, and a 55% margin needs 1.82x. Anything above that line is profit before overheads.",
+      },
+      {
+        q: "Why is my platform ROAS different from this one?",
+        a: "Platforms count conversions with their own attribution window and often include view-through sales and revenue that later got refunded. Use net revenue after returns for decisions, and treat the platform figure as a guide.",
+      },
+      {
+        q: "What is MER and how does it differ from ROAS?",
+        a: "MER (marketing efficiency ratio) is total revenue ÷ total marketing spend across all channels. It avoids attribution fights between platforms. Use ROAS to compare campaigns and MER to judge the whole business.",
+      },
+      {
+        q: "Should refunds and discounts come off revenue?",
+        a: "Yes. ROAS on gross revenue overstates efficiency when returns are high. Enter revenue after refunds and discounts so the break-even line means something.",
       },
     ],
   },
@@ -702,6 +822,22 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
         q: "My margin is high but cash is tight. Why?",
         a: "Margin is profitability per sale, not cash flow. Slow receivables, inventory and loan payments can starve a high-margin business — check the cash cycle next.",
       },
+      {
+        q: "How do I calculate the selling price for a target margin?",
+        a: "Divide cost by (1 − margin). For a $27 cost and a 40% margin, $27 ÷ 0.60 = $45. Multiplying cost by 1.40 would give $37.80, which is only a 28.6% margin.",
+      },
+      {
+        q: "How do I convert between margin and markup?",
+        a: "Markup = margin ÷ (1 − margin), and margin = markup ÷ (1 + markup). A 50% margin is a 100% markup, a 25% margin is a 33.3% markup, and a 40% margin is a 66.7% markup.",
+      },
+      {
+        q: "Which costs go into COGS?",
+        a: "Costs that exist only because you made or delivered the product: materials, direct labor, packaging, freight in, and often payment processing and shipping to the customer. Rent, salaries and marketing are operating costs. Pick a consistent rule and keep it.",
+      },
+      {
+        q: "What does a negative margin mean?",
+        a: "You sell below your direct cost, so every sale loses money before overheads. The fix is price, product cost or both, because volume only makes the loss larger.",
+      },
     ],
   },
   "markup-calculator": {
@@ -758,6 +894,22 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
       {
         q: "How do I lower my break-even point?",
         a: "Three levers: cut fixed costs, raise price, cut variable cost. Raising price works fastest because it improves contribution on every unit at once.",
+      },
+      {
+        q: "How do I include a profit target?",
+        a: "Add the target to fixed costs before dividing. To earn $6,000 on top of $12,000 fixed costs at $18 contribution per unit, you need ($12,000 + $6,000) ÷ $18 = 1,000 units.",
+      },
+      {
+        q: "How does a price change move break-even?",
+        a: "Raise the price from $45 to $50 and contribution grows from $18 to $23, so break-even drops from 667 units to 522. Cutting variable cost works the same way, but price changes need no supplier negotiation.",
+      },
+      {
+        q: "Is break-even the same as payback period?",
+        a: "No. Break-even is the sales volume per period where profit is zero. Payback is how long it takes to recover a one-off investment. A business can break even every month and still be years from paying back its startup cost.",
+      },
+      {
+        q: "Can I use break-even for a subscription business?",
+        a: "Yes. Treat one customer-month as a unit: price is monthly revenue per customer, variable cost is what each customer costs to serve, and the answer is how many paying customers you need each month to cover fixed costs.",
       },
     ],
   },
@@ -2079,6 +2231,22 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
       {
         q: "Percentage change from zero?",
         a: "Undefined — division by zero. Any change from zero is 'all of it'; use the absolute difference and say so.",
+      },
+      {
+        q: "How do I calculate a percentage increase between two numbers?",
+        a: "Subtract the old value from the new one, divide by the old value, then multiply by 100. From 80 to 100: (100 − 80) ÷ 80 × 100 = 25%.",
+      },
+      {
+        q: "How do I find the original price after a discount?",
+        a: "Divide the sale price by (1 − discount). If a price after 20% off is $80, the original was $80 ÷ 0.80 = $100. Adding 20% to $80 would give $96, which is wrong.",
+      },
+      {
+        q: "How do I work out a tip?",
+        a: "Multiply the bill by the tip rate. An 18% tip on $64 is $64 × 0.18 = $11.52, so the total is $75.52.",
+      },
+      {
+        q: "How do I take a percentage of a percentage?",
+        a: "Multiply them as decimals. 20% of 50% is 0.20 × 0.50 = 0.10, or 10%.",
       },
     ],
   },

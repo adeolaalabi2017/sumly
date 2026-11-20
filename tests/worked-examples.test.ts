@@ -62,3 +62,94 @@ describe("worked-example steps match the maths", () => {
     }
   });
 });
+
+const faq = (slug: string, startsWith: string): string => {
+  const f = TOOL_CONTENT[slug].faqs.find((x) => x.q.startsWith(startsWith));
+  if (!f) throw new Error(`${slug}: no FAQ starting "${startsWith}"`);
+  return f.a;
+};
+const pmt = (P: number, annual: number, n: number) => {
+  const r = annual / 12;
+  return (P * r) / (1 - Math.pow(1 + r, -n));
+};
+
+describe("FAQ figures match the maths", () => {
+  test("loan: rate change, 15 vs 30 years, biweekly", () => {
+    const M = pmt(350000, 0.0625, 360);
+    const M2 = pmt(350000, 0.0525, 360);
+    const a = faq("loan-mortgage-calculator", "How much does a 1% lower rate save");
+    expect(a).toContain(usd(Math.round(M2)));
+    expect(a).toContain(usd(Math.round(M - M2)));
+    expect(a).toContain(usd(Math.round((M * 360 - M2 * 360) / 1000) * 1000));
+    const M15 = pmt(350000, 0.0625, 180);
+    const b = faq("loan-mortgage-calculator", "Is a 15-year mortgage better");
+    expect(b).toContain(usd(Math.round(M15)));
+    expect(b).toContain(usd(Math.round((M15 * 180 - 350000) / 1000) * 1000));
+    let bal = 350000, k = 0, interest = 0;
+    while (bal > 0.005) {
+      const i = bal * (0.0625 / 26);
+      interest += i;
+      bal = bal + i - Math.min(M / 2, bal + i);
+      k++;
+    }
+    const c = faq("loan-mortgage-calculator", "Do biweekly payments");
+    expect(c).toContain(usd(Math.round((M * 360 - 350000 - interest) / 1000) * 1000));
+    expect(c).toContain((30 - k / 26).toFixed(1));
+  });
+
+  test("compound interest: rule of 72, simple vs compound, savings targets", () => {
+    expect(faq("compound-interest-calculator", "What is the Rule of 72")).toContain((Math.log(2) / Math.log(1.07)).toFixed(1));
+    const simple = faq("compound-interest-calculator", "How is compound interest different");
+    expect(simple).toContain(usd(10000 * (1 + 0.07 * 20)));
+    expect(simple).toContain(usd(Math.round(10000 * Math.pow(1.07, 20))));
+    const mr = 0.07 / 12;
+    const fv = (n: number) => (Math.pow(1 + mr, n) - 1) / mr;
+    const goal = faq("compound-interest-calculator", "How much do I need to save each month");
+    expect(goal).toContain(usd(Math.round(1e6 / fv(360) / 10) * 10));
+    expect(goal).toContain(usd(Math.round(1e6 / fv(240) / 10) * 10));
+    const early = faq("compound-interest-calculator", "Is starting early");
+    expect(early).toContain(usd(Math.round((300 * fv(240)) / 1000) * 1000));
+    expect(early).toContain(usd(Math.round((300 * fv(360)) / 1000) * 1000));
+    expect(faq("compound-interest-calculator", "What is the difference between APR and APY")).toContain(
+      ((Math.pow(1 + 0.07 / 12, 12) - 1) * 100).toFixed(2) + "%"
+    );
+  });
+
+  test("margin, break-even, ROI, ROAS, LTV, percentage", () => {
+    const price = faq("profit-margin-calculator", "How do I calculate the selling price");
+    expect(price).toContain(usd(27 / 0.6));
+    expect(price).toContain(usd(27 * 1.4, 2));
+    expect(price).toContain(((1 - 27 / (27 * 1.4)) * 100).toFixed(1) + "%");
+    const conv = faq("profit-margin-calculator", "How do I convert between margin");
+    expect(conv).toContain("33.3%");
+    expect(conv).toContain("66.7%");
+    expect(faq("break-even-calculator", "How do I include a profit target")).toContain(((12000 + 6000) / 18).toLocaleString("en-US") + " units");
+    const bp = faq("break-even-calculator", "How does a price change");
+    expect(bp).toContain(String(Math.round(12000 / 23)));
+    expect(bp).toContain("$23");
+    expect(faq("marketing-roi-calculator", "At what margin")).toContain(`${(12000 / 60000) * 100}%`);
+    const roas = faq("roas-calculator", "How do I work out my break-even ROAS");
+    expect(roas).toContain((1 / 0.4).toFixed(1) + "x");
+    expect(roas).toContain((1 / 0.25).toFixed(0) + "x");
+    expect(roas).toContain((1 / 0.55).toFixed(2) + "x");
+    expect(faq("cac-calculator", "How does CAC relate to LTV")).toContain(usd(400 * 3));
+    expect(faq("ltv-calculator", "How do I calculate LTV for a subscription")).toContain(usd((50 * 0.8) / 0.04));
+    expect(faq("ltv-calculator", "What LTV:CAC ratio")).toContain(usd(Math.round(2210 / 3)));
+    expect(faq("percentage-calculator", "How do I find the original price")).toContain(usd(80 / 0.8));
+    const tip = faq("percentage-calculator", "How do I work out a tip");
+    expect(tip).toContain(usd(64 * 0.18, 2));
+    expect(tip).toContain(usd(64 * 1.18, 2));
+  });
+
+  test("top tools have at least 6 FAQs with unique questions", () => {
+    for (const slug of [
+      "loan-mortgage-calculator", "compound-interest-calculator", "profit-margin-calculator",
+      "break-even-calculator", "marketing-roi-calculator", "roas-calculator", "cac-calculator",
+      "ltv-calculator", "percentage-calculator", "profit-loss-calculator",
+    ]) {
+      const qs = TOOL_CONTENT[slug].faqs.map((f) => f.q);
+      expect(qs.length, slug).toBeGreaterThanOrEqual(6);
+      expect(new Set(qs).size, slug).toBe(qs.length);
+    }
+  });
+});
