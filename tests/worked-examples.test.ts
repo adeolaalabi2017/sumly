@@ -153,6 +153,8 @@ describe("FAQ figures match the maths", () => {
       expect(qs.length, slug).toBeGreaterThanOrEqual(6);
       expect(new Set(qs).size, slug).toBe(qs.length);
     }
+  });
+});
 
 describe("more worked-example steps match the maths", () => {
   test("budget, grade, invoice", () => {

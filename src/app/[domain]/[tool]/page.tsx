@@ -4,6 +4,7 @@ import { TOOLS, domainBySlug, toolBySlug } from "@/lib/registry";
 import { TOOL_CONTENT } from "@/lib/registry/tool-content";
 import { ToolPage } from "@/components/pages/tool-page";
 import { SITE_URL, appCategory, breadcrumbSchema, jsonLd } from "@/lib/structured-data";
+import { OG_SIZE, ogAlt, ogImagePath } from "@/lib/og";
 
 export function generateStaticParams() {
   return TOOLS.map((t) => ({
@@ -29,6 +30,7 @@ export async function generateMetadata({
   const title = `${t.name} — Free Online Tool`;
   const description = t.description || t.tagline;
   const canonicalUrl = `/${t.domain}/${t.slug}`;
+  const ogImage = { url: ogImagePath(t), ...OG_SIZE, type: "image/png", alt: ogAlt(t) };
 
   return {
     title,
@@ -41,12 +43,14 @@ export async function generateMetadata({
       title: `${t.name} — Sumly`,
       description,
       type: "website",
+      images: [ogImage],
       url: canonicalUrl,
     },
     twitter: {
       card: "summary_large_image",
       title: `${t.name} — Sumly`,
       description: t.tagline,
+      images: [{ url: ogImagePath(t), alt: ogAlt(t) }],
     },
   };
 }
