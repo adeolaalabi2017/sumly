@@ -130,6 +130,23 @@ export function ToolPage({
         <div className="mt-2 rounded-xl bg-muted p-5">
           <h3 className="font-sans font-semibold tracking-normal">Worked example</h3>
           <p className="mt-1 max-w-4xl text-lg leading-snug">{content.example}</p>
+          {content.steps && content.steps.length > 0 && (
+            <ol className="mt-5 divide-y divide-border rounded-xl bg-card px-5" aria-label="Step-by-step working">
+              {content.steps.map((step, i) => (
+                <li
+                  key={i}
+                  className="grid gap-x-6 gap-y-1 py-3.5 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)_auto] sm:items-baseline"
+                >
+                  <span className="font-medium">
+                    <span className="tnum mr-2 text-muted-foreground">{i + 1}.</span>
+                    {step.label}
+                  </span>
+                  <span className="tnum text-muted-foreground">{step.working}</span>
+                  <span className="tnum font-medium sm:text-right">{step.result}</span>
+                </li>
+              ))}
+            </ol>
+          )}
           <p className="mt-2 text-sm text-muted-foreground">
             The tool above opens with these numbers. Change them to run your own scenario, or press Reset to
             come back to this example.

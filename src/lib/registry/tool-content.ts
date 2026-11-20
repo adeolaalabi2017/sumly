@@ -36,6 +36,15 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "loan-mortgage-calculator": {
+    steps: [
+      { label: "Monthly rate", working: "6.25% ÷ 12", result: "0.5208%" },
+      { label: "Number of payments", working: "30 years × 12", result: "360" },
+      { label: "Discount factor", working: "(1 + 0.005208)⁻³⁶⁰", result: "0.1541" },
+      { label: "Monthly payment", working: "$350,000 × 0.005208 ÷ (1 − 0.1541)", result: "$2,155.01" },
+      { label: "Total paid", working: "$2,155.01 × 360", result: "$775,804" },
+      { label: "Total interest", working: "$775,804 − $350,000", result: "$425,804" },
+      { label: "Add $200 a month", working: "$2,355.01 a month clears the loan in about 287 payments, 6.1 years sooner", result: "$101,470 saved" },
+    ],
     howItWorks: [
       "The monthly payment uses the standard amortization formula: M = P × r ÷ (1 − (1+r)⁻ⁿ), where P is the principal, r the monthly rate and n the number of payments.",
       "Total cost is simply payment × months − principal — that difference is the interest, and it is usually the shock.",
@@ -90,6 +99,15 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "compound-interest-calculator": {
+    steps: [
+      { label: "Monthly rate", working: "7% ÷ 12", result: "0.5833%" },
+      { label: "Months invested", working: "20 years × 12", result: "240" },
+      { label: "Growth of the $10,000", working: "$10,000 × (1.005833)²⁴⁰", result: "$40,387" },
+      { label: "Growth of the contributions", working: "$300 × ((1.005833)²⁴⁰ − 1) ÷ 0.005833", result: "$156,278" },
+      { label: "Final balance", working: "$40,387 + $156,278", result: "$196,665" },
+      { label: "Money you put in", working: "$10,000 + $300 × 240", result: "$82,000" },
+      { label: "Interest earned", working: "$196,665 − $82,000, which is 58% of the final balance", result: "$114,665" },
+    ],
     howItWorks: [
       "Interest compounds when earned interest starts earning its own interest. The calculator steps through every month, applying your compounding frequency before adding each contribution.",
       "Compounding frequency matters, but less than people expect: daily versus annual compounding on a 7% rate changes the 20-year result by a few percent. Time and contribution rate matter far more.",
@@ -167,6 +185,14 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "profit-loss-calculator": {
+    steps: [
+      { label: "Gross profit", working: "$250,000 − $90,000", result: "$160,000 (64%)" },
+      { label: "Operating profit (EBIT)", working: "$160,000 − $95,000", result: "$65,000 (26%)" },
+      { label: "Profit before tax", working: "$65,000 − $12,000", result: "$53,000" },
+      { label: "Tax at 21%", working: "$53,000 × 21%", result: "$11,130" },
+      { label: "Net profit", working: "$53,000 − $11,130", result: "$41,870" },
+      { label: "Net margin", working: "$41,870 ÷ $250,000", result: "16.7%" },
+    ],
     howItWorks: [
       "The calculator follows the income statement: revenue minus COGS gives gross profit; minus operating expenses gives operating profit (EBIT); minus other items and tax gives net profit.",
       "Each margin is that profit line divided by revenue. Gross margin shows product economics, operating margin shows overhead discipline, and net margin is what survives everything.",
@@ -240,6 +266,14 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "marketing-roi-calculator": {
+    steps: [
+      { label: "Gross profit", working: "$60,000 × 60%", result: "$36,000" },
+      { label: "Net return", working: "$36,000 − $12,000", result: "$24,000" },
+      { label: "ROI", working: "$24,000 ÷ $12,000", result: "200%" },
+      { label: "Profit per $1 spent", working: "$24,000 ÷ $12,000", result: "$2.00" },
+      { label: "ROAS", working: "$60,000 ÷ $12,000", result: "5.0x" },
+      { label: "Same campaign at a 20% margin", working: "$60,000 × 20% − $12,000", result: "$0, exactly break-even" },
+    ],
     howItWorks: [
       "Revenue-based ROI flatters campaigns on thin margins. This version converts revenue into gross profit first (revenue × margin), then subtracts spend — only what is left is a real return.",
       "ROI is net return divided by spend; the profit-per-dollar figure is the same number per $1. ROAS is shown alongside for teams that report in platform terms.",
@@ -286,6 +320,12 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "cac-calculator": {
+    steps: [
+      { label: "Total acquisition cost", working: "$30,000 + $18,000", result: "$48,000" },
+      { label: "CAC", working: "$48,000 ÷ 120 customers", result: "$400" },
+      { label: "Monthly profit per customer", working: "$120 × 75%", result: "$90" },
+      { label: "Payback period", working: "$400 ÷ $90", result: "4.4 months" },
+    ],
     howItWorks: [
       "True CAC is all acquisition cost — marketing plus sales, including salaries, tools and commissions — divided by new customers won in the same period. Counting only ad spend flatters the number.",
       "Payback period divides CAC by monthly profit per customer (ARPU × gross margin). It answers the cash question: how long until each customer has repaid their own acquisition?",
@@ -405,6 +445,13 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "ltv-calculator": {
+    steps: [
+      { label: "Annual revenue per customer", working: "$85 × 6 purchases", result: "$510" },
+      { label: "Annual profit per customer", working: "$510 × 65%", result: "$331.50" },
+      { label: "Customer lifespan", working: "1 ÷ 15% churn", result: "6.7 years" },
+      { label: "Lifetime value", working: "$331.50 × 6.67", result: "$2,210" },
+      { label: "LTV:CAC ratio", working: "$2,210 ÷ $95", result: "23.3 : 1" },
+    ],
     howItWorks: [
       "Lifetime value = average order value × purchases per year × gross margin × expected lifespan in years, where lifespan is 1 ÷ annual churn. Margin keeps it in profit terms, not revenue terms.",
       "Churn dominates the equation: halving churn doubles lifespan, which doubles LTV at every other number unchanged. Retention work is the highest-leverage growth project most businesses ignore.",
@@ -497,6 +544,14 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "roas-calculator": {
+    steps: [
+      { label: "ROAS", working: "$45,000 ÷ $9,000", result: "5.0x" },
+      { label: "Break-even ROAS", working: "1 ÷ 0.55", result: "1.82x" },
+      { label: "Headroom above break-even", working: "5.0 − 1.82", result: "3.18x" },
+      { label: "Gross profit", working: "$45,000 × 55%", result: "$24,750" },
+      { label: "Profit after ad spend", working: "$24,750 − $9,000", result: "$15,750" },
+      { label: "Revenue needed for a 6x target", working: "6 × $9,000", result: "$54,000" },
+    ],
     howItWorks: [
       "ROAS is revenue ÷ ad spend — the headline efficiency of a campaign. But it is only meaningful next to your break-even ROAS: 1 ÷ gross margin.",
       "At a 55% margin, break-even is 1.82x: below that ROAS, every sale loses money however good the dashboard looks. Above it, the profit-after-spend figure shows what the campaign actually banked.",
@@ -616,6 +671,13 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "profit-margin-calculator": {
+    steps: [
+      { label: "Gross profit", working: "$45,000 − $27,000", result: "$18,000" },
+      { label: "Gross margin", working: "$18,000 ÷ $45,000", result: "40.0%" },
+      { label: "Markup", working: "$18,000 ÷ $27,000", result: "66.7%" },
+      { label: "Per $100 of sales", working: "$100 × 40%", result: "$40 kept, $60 to cost" },
+      { label: "Why they differ", working: "Same $18,000 of profit, divided by price for margin and by cost for markup", result: "40% vs 66.7%" },
+    ],
     howItWorks: [
       "Gross margin is profit ÷ revenue: what share of every sales dollar survives after the direct cost of the product or service. It is the number lenders, investors and pricing decisions all start from.",
       "Markup is the same profit described against cost instead of price — a 40% margin is a 66.7% markup. The two get swapped constantly, and the error quietly misprices products.",
@@ -666,6 +728,13 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "break-even-calculator": {
+    steps: [
+      { label: "Contribution per unit", working: "$45 − $27", result: "$18" },
+      { label: "Break-even units", working: "$12,000 ÷ $18", result: "666.7, so 667 units" },
+      { label: "Break-even revenue", working: "666.7 × $45", result: "$30,000" },
+      { label: "Profit at 800 units", working: "800 × $18 − $12,000", result: "$2,400" },
+      { label: "Margin of safety", working: "(800 − 666.7) ÷ 800", result: "16.7%" },
+    ],
     howItWorks: [
       "Each unit sold contributes price minus variable cost — the contribution margin. Fixed costs ÷ contribution per unit is the break-even point: the units that must sell before the business earns anything.",
       "Break-even revenue multiplies those units by price, which is the monthly sales figure to clear before profit begins.",
@@ -1980,6 +2049,13 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
     ],
   },
   "percentage-calculator": {
+    steps: [
+      { label: "15% of $240", working: "15 × $240 ÷ 100", result: "$36" },
+      { label: "$36 is what % of $240", working: "$36 ÷ $240 × 100", result: "15%" },
+      { label: "Change from $80 to $100", working: "($100 − $80) ÷ $80", result: "+25%" },
+      { label: "Change back from $100 to $80", working: "($80 − $100) ÷ $100", result: "−20%" },
+      { label: "Why not −25%", working: "The second change divides by the new, larger base", result: "$20 ÷ $100 = 20%" },
+    ],
     howItWorks: [
       "X% of Y multiplies: percent × value ÷ 100 — the discount and tax calculation. The extras show the value after increasing or decreasing Y by X% in one step.",
       "'X is what % of Y' divides: part ÷ whole × 100 — market share, attendance, budget used. The fraction form is shown too, because it is often what you actually need.",
