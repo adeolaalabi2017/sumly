@@ -578,19 +578,25 @@ export function CurrencyConverter() {
   const [rateSource, setRateSource] = React.useState<"live" | "snapshot">("snapshot");
 
   React.useEffect(() => {
-    fetch("/api/rates")
-      .then((res) => res.json())
+    // Browser-side fetch: the site is a static export with no server. CORS is open on this API.
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 4000);
+    fetch("https://open.er-api.com/v6/latest/USD", { signal: controller.signal })
+      .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
         if (data && data.rates && typeof data.rates === "object") {
           setRates((prev) => ({ ...prev, ...data.rates }));
-          if (data.source === "live") {
-            setRateSource("live");
-          }
+          setRateSource("live");
         }
       })
       .catch(() => {
         // Keeps SNAPSHOT_RATES
-      });
+      })
+      .finally(() => clearTimeout(timer));
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
   }, []);
 
   const codes = Object.keys(rates).sort();
@@ -624,12 +630,12 @@ export function CurrencyConverter() {
               value={override}
               onChange={setOverride}
               placeholder={tableRate.toFixed(4).replace(/\.?0+$/, "") || "—"}
-              hint={override ? "Using your custom rate" : `${rateSource === "live" ? "Live edge" : "Snapshot"}: ${tableRate.toFixed(4)}`}
+              hint={override ? "Using your custom rate" : `${rateSource === "live" ? "Live" : "Snapshot"}: ${tableRate.toFixed(4)}`}
             />
           </FieldGrid>
           <Verdict tone={rateSource === "live" ? "good" : "neutral"}>
             {rateSource === "live"
-              ? "Live Forex exchange rates provided via edge cache. Enter your specific bank or card rate above for exact settlement figures."
+              ? "Live exchange rates from open.er-api.com. Enter your specific bank or card rate above for exact settlement figures."
               : "Rates are an indicative snapshot — enter your bank or card rate above for exact figures."}
           </Verdict>
         </div>
