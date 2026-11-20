@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/site/legal-page";
+import { LEGAL_UPDATED, formatLongDate } from "@/lib/legal-dates";
 
 export const metadata: Metadata = {
   title: "Terms of use",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of use" updated="1 November 2026">
+    <LegalPage title="Terms of use" updated={formatLongDate(LEGAL_UPDATED.terms)}>
       <p>By using Sumly you agree to these terms.</p>
 
       <h2>Use of the tools</h2>
