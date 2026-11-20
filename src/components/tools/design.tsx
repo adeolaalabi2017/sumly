@@ -59,7 +59,7 @@ function FilePicker({
       <div
         role="button"
         tabIndex={0}
-        aria-label="Choose an image"
+        // No aria-label: the button is named by its own visible text, so the two can never disagree (WCAG 2.5.3).
         onClick={() => inputRef.current?.click()}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
