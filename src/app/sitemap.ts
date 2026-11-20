@@ -2,6 +2,13 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 import { DOMAINS, PROFESSIONS, TOOLS } from "@/lib/registry";
+import { LEGAL_UPDATED } from "@/lib/legal-dates";
+import {
+  domainLastModified,
+  homeLastModified,
+  professionLastModified,
+  toolLastModified,
+} from "@/lib/lastmod";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sumly.cc";
@@ -10,13 +17,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const rootRoute: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
-      lastModified: new Date(),
+      lastModified: homeLastModified(),
       changeFrequency: "daily",
       priority: 1.0,
     },
-    ...["privacy", "terms"].map((path) => ({
+    ...(["privacy", "terms"] as const).map((path) => ({
       url: `${baseUrl}/${path}`,
-      lastModified: new Date(),
+      lastModified: new Date(`${LEGAL_UPDATED[path]}T00:00:00Z`),
       changeFrequency: "yearly" as const,
       priority: 0.2,
     })),
@@ -25,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Every live domain
   const domainRoutes: MetadataRoute.Sitemap = DOMAINS.map((d) => ({
     url: `${baseUrl}/${d.slug}`,
-    lastModified: new Date(),
+    lastModified: domainLastModified(d.slug),
     changeFrequency: "weekly",
     priority: 0.8,
   }));
@@ -33,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Profession hubs
   const professionRoutes: MetadataRoute.Sitemap = PROFESSIONS.map((p) => ({
     url: `${baseUrl}/professions/${p.slug}`,
-    lastModified: new Date(),
+    lastModified: professionLastModified(p.slug),
     changeFrequency: "weekly",
     priority: 0.7,
   }));
@@ -41,7 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Every tool page
   const toolRoutes: MetadataRoute.Sitemap = TOOLS.map((t) => ({
     url: `${baseUrl}/${t.domain}/${t.slug}`,
-    lastModified: new Date(),
+    lastModified: toolLastModified(t.slug),
     changeFrequency: "monthly",
     priority: 0.9,
   }));

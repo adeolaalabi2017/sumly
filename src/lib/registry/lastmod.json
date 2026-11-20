@@ -1,0 +1,682 @@
+{
+  "budget-expense-calculator": {
+    "hash": "80b4383817d4",
+    "date": "2026-11-20"
+  },
+  "loan-mortgage-calculator": {
+    "hash": "bb659079f96a",
+    "date": "2026-11-20"
+  },
+  "investment-calculator": {
+    "hash": "d0a8e08b919f",
+    "date": "2026-11-20"
+  },
+  "compound-interest-calculator": {
+    "hash": "699de0627fd4",
+    "date": "2026-11-20"
+  },
+  "income-tax-calculator": {
+    "hash": "61cd99805422",
+    "date": "2026-11-20"
+  },
+  "vat-calculator": {
+    "hash": "ce1b97cde080",
+    "date": "2026-11-20"
+  },
+  "profit-loss-calculator": {
+    "hash": "80c04c6bc696",
+    "date": "2026-11-20"
+  },
+  "currency-converter": {
+    "hash": "9f3eff85c98b",
+    "date": "2026-11-20"
+  },
+  "debt-repayment-calculator": {
+    "hash": "64fe341dc1af",
+    "date": "2026-11-20"
+  },
+  "marketing-roi-calculator": {
+    "hash": "0870dbbe5439",
+    "date": "2026-11-20"
+  },
+  "campaign-performance-calculator": {
+    "hash": "3d397adb72eb",
+    "date": "2026-11-20"
+  },
+  "cac-calculator": {
+    "hash": "61df18624484",
+    "date": "2026-11-20"
+  },
+  "conversion-rate-calculator": {
+    "hash": "6fed179a0c67",
+    "date": "2026-11-20"
+  },
+  "marketing-budget-planner": {
+    "hash": "a23730d7c3d2",
+    "date": "2026-11-20"
+  },
+  "funnel-calculator": {
+    "hash": "6ab559a41531",
+    "date": "2026-11-20"
+  },
+  "ab-test-significance-calculator": {
+    "hash": "694f716ad407",
+    "date": "2026-11-20"
+  },
+  "ltv-calculator": {
+    "hash": "fd2e6e702d4a",
+    "date": "2026-11-20"
+  },
+  "cpc-calculator": {
+    "hash": "3a85908583dc",
+    "date": "2026-11-20"
+  },
+  "cpm-calculator": {
+    "hash": "8a8c4dbb20a1",
+    "date": "2026-11-20"
+  },
+  "ctr-calculator": {
+    "hash": "e4c93fe0095d",
+    "date": "2026-11-20"
+  },
+  "roas-calculator": {
+    "hash": "f4f337daa4a5",
+    "date": "2026-11-20"
+  },
+  "ad-budget-calculator": {
+    "hash": "086a67cc9fac",
+    "date": "2026-11-20"
+  },
+  "impression-estimator": {
+    "hash": "bec5be21693b",
+    "date": "2026-11-20"
+  },
+  "reach-frequency-calculator": {
+    "hash": "3b2cf74abecb",
+    "date": "2026-11-20"
+  },
+  "media-planning-calculator": {
+    "hash": "40de06d8c10b",
+    "date": "2026-11-20"
+  },
+  "profit-margin-calculator": {
+    "hash": "e91b861ca8b8",
+    "date": "2026-11-20"
+  },
+  "markup-calculator": {
+    "hash": "c316e723cae8",
+    "date": "2026-11-20"
+  },
+  "break-even-calculator": {
+    "hash": "dee35df6b995",
+    "date": "2026-11-20"
+  },
+  "pricing-calculator": {
+    "hash": "ae9ca00ce317",
+    "date": "2026-11-20"
+  },
+  "discount-calculator": {
+    "hash": "f53042eb1a6a",
+    "date": "2026-11-20"
+  },
+  "commission-calculator": {
+    "hash": "790f7fe5af97",
+    "date": "2026-11-20"
+  },
+  "shipping-cost-calculator": {
+    "hash": "158f98a746b2",
+    "date": "2026-11-20"
+  },
+  "invoice-generator": {
+    "hash": "3454ea5c1678",
+    "date": "2026-11-20"
+  },
+  "meta-title-generator": {
+    "hash": "010572b93cec",
+    "date": "2026-11-20"
+  },
+  "meta-description-generator": {
+    "hash": "526d08612aaf",
+    "date": "2026-11-20"
+  },
+  "serp-snippet-preview": {
+    "hash": "85950d620bf4",
+    "date": "2026-11-20"
+  },
+  "keyword-density-checker": {
+    "hash": "a68c27be29d4",
+    "date": "2026-11-20"
+  },
+  "robots-txt-generator": {
+    "hash": "8f8154258891",
+    "date": "2026-11-20"
+  },
+  "xml-sitemap-generator": {
+    "hash": "7a6bf3332766",
+    "date": "2026-11-20"
+  },
+  "url-slug-generator": {
+    "hash": "d590460b5d08",
+    "date": "2026-11-20"
+  },
+  "schema-markup-generator": {
+    "hash": "8ee0abb9cd0e",
+    "date": "2026-11-20"
+  },
+  "diff-checker": {
+    "hash": "fc7563cc7de1",
+    "date": "2026-11-20"
+  },
+  "word-counter": {
+    "hash": "5bc9a2404f82",
+    "date": "2026-11-20"
+  },
+  "character-counter": {
+    "hash": "8e64eb583698",
+    "date": "2026-11-20"
+  },
+  "reading-time-calculator": {
+    "hash": "21886c1ce044",
+    "date": "2026-11-20"
+  },
+  "text-case-converter": {
+    "hash": "c1ecba23adae",
+    "date": "2026-11-20"
+  },
+  "lorem-ipsum-generator": {
+    "hash": "f6cb8a3e0759",
+    "date": "2026-11-20"
+  },
+  "headline-analyser": {
+    "hash": "ed4f867742e4",
+    "date": "2026-11-20"
+  },
+  "contrast-checker": {
+    "hash": "83a586831b76",
+    "date": "2026-11-20"
+  },
+  "image-compressor": {
+    "hash": "234ba15849a0",
+    "date": "2026-11-20"
+  },
+  "image-resizer": {
+    "hash": "909242373c3d",
+    "date": "2026-11-20"
+  },
+  "image-cropper": {
+    "hash": "8c0d5c4a9fdd",
+    "date": "2026-11-20"
+  },
+  "colour-palette-generator": {
+    "hash": "a9fefdc8425b",
+    "date": "2026-11-20"
+  },
+  "hex-to-rgb-converter": {
+    "hash": "39cbf53945df",
+    "date": "2026-11-20"
+  },
+  "aspect-ratio-calculator": {
+    "hash": "b9565cd67c05",
+    "date": "2026-11-20"
+  },
+  "percentage-change-calculator": {
+    "hash": "6685cbf9e4c4",
+    "date": "2026-11-20"
+  },
+  "data-format-converter": {
+    "hash": "34443b0be945",
+    "date": "2026-11-20"
+  },
+  "csv-viewer": {
+    "hash": "1a34ef800323",
+    "date": "2026-11-20"
+  },
+  "json-to-csv-converter": {
+    "hash": "cc44dfd847e3",
+    "date": "2026-11-20"
+  },
+  "average-calculator": {
+    "hash": "d462d4497170",
+    "date": "2026-11-20"
+  },
+  "standard-deviation-calculator": {
+    "hash": "12a31d0e3f62",
+    "date": "2026-11-20"
+  },
+  "password-generator": {
+    "hash": "8b9e7b6f4d39",
+    "date": "2026-11-20"
+  },
+  "json-formatter": {
+    "hash": "c694b3f1e3b7",
+    "date": "2026-11-20"
+  },
+  "regex-tester": {
+    "hash": "55de9f258bcd",
+    "date": "2026-11-20"
+  },
+  "base64-encoder-decoder": {
+    "hash": "f01476e9d4ba",
+    "date": "2026-11-20"
+  },
+  "url-encoder-decoder": {
+    "hash": "08d08676df06",
+    "date": "2026-11-20"
+  },
+  "uuid-generator": {
+    "hash": "69dd354bf103",
+    "date": "2026-11-20"
+  },
+  "hash-generator": {
+    "hash": "9947c18132cc",
+    "date": "2026-11-20"
+  },
+  "pomodoro-timer": {
+    "hash": "0102e6a67698",
+    "date": "2026-11-20"
+  },
+  "meeting-cost-calculator": {
+    "hash": "89c00b6295dd",
+    "date": "2026-11-20"
+  },
+  "working-days-calculator": {
+    "hash": "71c9e9a58865",
+    "date": "2026-11-20"
+  },
+  "project-cost-calculator": {
+    "hash": "0b6ae1b0d351",
+    "date": "2026-11-20"
+  },
+  "deadline-calculator": {
+    "hash": "0669ec07950c",
+    "date": "2026-11-20"
+  },
+  "time-zone-converter": {
+    "hash": "475c65404a1a",
+    "date": "2026-11-20"
+  },
+  "gpa-calculator": {
+    "hash": "5c3160807a3b",
+    "date": "2026-11-20"
+  },
+  "grade-calculator": {
+    "hash": "19d34c4900b2",
+    "date": "2026-11-20"
+  },
+  "citation-formatter": {
+    "hash": "23db1533de81",
+    "date": "2026-11-20"
+  },
+  "age-calculator": {
+    "hash": "ccdeb21c42a6",
+    "date": "2026-11-20"
+  },
+  "years-months-days-calculator": {
+    "hash": "61b8c1ed301c",
+    "date": "2026-11-20"
+  },
+  "date-calculator": {
+    "hash": "21f172bcb6fa",
+    "date": "2026-11-20"
+  },
+  "unit-converter": {
+    "hash": "7629c8e8ba01",
+    "date": "2026-11-20"
+  },
+  "temperature-converter": {
+    "hash": "f86c627e942a",
+    "date": "2026-11-20"
+  },
+  "jwt-decoder": {
+    "hash": "10b2f78f0f49",
+    "date": "2026-11-20"
+  },
+  "cron-builder": {
+    "hash": "3c2a21725d24",
+    "date": "2026-11-20"
+  },
+  "curl-to-code": {
+    "hash": "3e1b6f96c801",
+    "date": "2026-11-20"
+  },
+  "timestamp-converter": {
+    "hash": "231dcfef1c6a",
+    "date": "2026-11-20"
+  },
+  "box-shadow-generator": {
+    "hash": "5e68af542c05",
+    "date": "2026-11-20"
+  },
+  "svg-to-css": {
+    "hash": "0406e7d54db4",
+    "date": "2026-11-20"
+  },
+  "clamp-calculator": {
+    "hash": "c2fe918b97d3",
+    "date": "2026-11-20"
+  },
+  "favicon-generator": {
+    "hash": "d5084d608d79",
+    "date": "2026-11-20"
+  },
+  "freelance-rate-calculator": {
+    "hash": "369e4ea4c14f",
+    "date": "2026-11-20"
+  },
+  "mrr-churn-calculator": {
+    "hash": "4d6c8c17d13b",
+    "date": "2026-11-20"
+  },
+  "cash-runway-calculator": {
+    "hash": "6cdc3e526499",
+    "date": "2026-11-20"
+  },
+  "depreciation-calculator": {
+    "hash": "0a4ce5c61e54",
+    "date": "2026-11-20"
+  },
+  "utm-builder": {
+    "hash": "04a9fa62d393",
+    "date": "2026-11-20"
+  },
+  "ctor-calculator": {
+    "hash": "d0dbdc2840ed",
+    "date": "2026-11-20"
+  },
+  "viral-coefficient-calculator": {
+    "hash": "8279d05f2a3c",
+    "date": "2026-11-20"
+  },
+  "target-cpa-calculator": {
+    "hash": "65a16cc39b10",
+    "date": "2026-11-20"
+  },
+  "video-completion-calculator": {
+    "hash": "7d3ccf3d9611",
+    "date": "2026-11-20"
+  },
+  "ad-fatigue-estimator": {
+    "hash": "545006a00f5c",
+    "date": "2026-11-20"
+  },
+  "unit-economics-calculator": {
+    "hash": "f533012117ff",
+    "date": "2026-11-20"
+  },
+  "inventory-turnover-calculator": {
+    "hash": "a288eb2a996d",
+    "date": "2026-11-20"
+  },
+  "nps-calculator": {
+    "hash": "3adc105f85ae",
+    "date": "2026-11-20"
+  },
+  "social-share-preview": {
+    "hash": "0e82ef7d472d",
+    "date": "2026-11-20"
+  },
+  "hreflang-generator": {
+    "hash": "2d185d616682",
+    "date": "2026-11-20"
+  },
+  "redirect-generator": {
+    "hash": "f7bc549b4817",
+    "date": "2026-11-20"
+  },
+  "readability-analyzer": {
+    "hash": "e29472ed6730",
+    "date": "2026-11-20"
+  },
+  "markdown-converter": {
+    "hash": "46413f281307",
+    "date": "2026-11-20"
+  },
+  "filename-sanitizer": {
+    "hash": "61474082443a",
+    "date": "2026-11-20"
+  },
+  "sample-size-calculator": {
+    "hash": "82aef5e58f5b",
+    "date": "2026-11-20"
+  },
+  "correlation-calculator": {
+    "hash": "f53b8145995b",
+    "date": "2026-11-20"
+  },
+  "data-deduplicator": {
+    "hash": "202b3e0ef67c",
+    "date": "2026-11-20"
+  },
+  "sprint-capacity-planner": {
+    "hash": "22982bb93538",
+    "date": "2026-11-20"
+  },
+  "timesheet-calculator": {
+    "hash": "8a889406fce9",
+    "date": "2026-11-20"
+  },
+  "priority-matrix": {
+    "hash": "0eb3f564179d",
+    "date": "2026-11-20"
+  },
+  "final-exam-calculator": {
+    "hash": "7c07026c4777",
+    "date": "2026-11-20"
+  },
+  "tip-splitter": {
+    "hash": "a2edaa4e0a39",
+    "date": "2026-11-20"
+  },
+  "fuel-cost-calculator": {
+    "hash": "c64c758e0925",
+    "date": "2026-11-20"
+  },
+  "countdown-timer": {
+    "hash": "355dd51e276a",
+    "date": "2026-11-20"
+  },
+  "hourly-salary-converter": {
+    "hash": "0c90e5481e9c",
+    "date": "2026-11-20"
+  },
+  "paycheck-calculator": {
+    "hash": "fa5a5a1783dd",
+    "date": "2026-11-20"
+  },
+  "home-affordability-calculator": {
+    "hash": "c106d801f231",
+    "date": "2026-11-20"
+  },
+  "retirement-savings-calculator": {
+    "hash": "1476fb5af828",
+    "date": "2026-11-20"
+  },
+  "electricity-cost-calculator": {
+    "hash": "58dca5d40772",
+    "date": "2026-11-20"
+  },
+  "random-number-generator": {
+    "hash": "8288299b64b3",
+    "date": "2026-11-20"
+  },
+  "hours-between-times-calculator": {
+    "hash": "5f6943da12bb",
+    "date": "2026-11-20"
+  },
+  "number-base-converter": {
+    "hash": "9101fe399bc1",
+    "date": "2026-11-20"
+  },
+  "password-strength-checker": {
+    "hash": "21d72a58c4e9",
+    "date": "2026-11-20"
+  },
+  "roman-numeral-converter": {
+    "hash": "e1a30698afa6",
+    "date": "2026-11-20"
+  },
+  "bmi-calculator": {
+    "hash": "d336f7c17da4",
+    "date": "2026-11-20"
+  },
+  "calorie-calculator": {
+    "hash": "8a3d7340a8cc",
+    "date": "2026-11-20"
+  },
+  "pregnancy-due-date-calculator": {
+    "hash": "1cc4d2bbc6bb",
+    "date": "2026-11-20"
+  },
+  "body-fat-calculator": {
+    "hash": "66243b5d4211",
+    "date": "2026-11-20"
+  },
+  "target-heart-rate-calculator": {
+    "hash": "1b9b11974a3c",
+    "date": "2026-11-20"
+  },
+  "basic-calculator": {
+    "hash": "8f0dbe4347fa",
+    "date": "2026-11-20"
+  },
+  "scientific-calculator": {
+    "hash": "75a2a4f6c8f5",
+    "date": "2026-11-20"
+  },
+  "percentage-difference-calculator": {
+    "hash": "881d6f12670f",
+    "date": "2026-11-20"
+  },
+  "percentage-calculator": {
+    "hash": "fe6bb9015b59",
+    "date": "2026-11-20"
+  },
+  "sig-fig-calculator": {
+    "hash": "5f09af4ce8e4",
+    "date": "2026-11-20"
+  },
+  "fraction-calculator": {
+    "hash": "f11db9c4d102",
+    "date": "2026-11-20"
+  },
+  "ratio-calculator": {
+    "hash": "263f3d4b94ff",
+    "date": "2026-11-20"
+  },
+  "rounding-calculator": {
+    "hash": "d0af56851eea",
+    "date": "2026-11-20"
+  },
+  "quadratic-equation-solver": {
+    "hash": "2cfffabf01d8",
+    "date": "2026-11-20"
+  },
+  "gcd-lcm-calculator": {
+    "hash": "c3653e92da57",
+    "date": "2026-11-20"
+  },
+  "prime-factorization-calculator": {
+    "hash": "24a1439aa923",
+    "date": "2026-11-20"
+  },
+  "permutation-combination-calculator": {
+    "hash": "6cbb0873cff1",
+    "date": "2026-11-20"
+  },
+  "pythagorean-theorem-calculator": {
+    "hash": "990f44637489",
+    "date": "2026-11-20"
+  },
+  "area-calculator": {
+    "hash": "ffd11a1bf132",
+    "date": "2026-11-20"
+  },
+  "volume-calculator": {
+    "hash": "d1daa7366cc0",
+    "date": "2026-11-20"
+  },
+  "merge-pdf": {
+    "hash": "b3d8d8ba682b",
+    "date": "2026-11-20"
+  },
+  "split-pdf": {
+    "hash": "07c4c25f7e97",
+    "date": "2026-11-20"
+  },
+  "pdf-page-organizer": {
+    "hash": "ec733bf55b2c",
+    "date": "2026-11-20"
+  },
+  "jpg-to-pdf": {
+    "hash": "b1108b7df592",
+    "date": "2026-11-20"
+  },
+  "pdf-to-jpg": {
+    "hash": "2d8387ad2fe6",
+    "date": "2026-11-20"
+  },
+  "zip-file-creator": {
+    "hash": "34983b504f3c",
+    "date": "2026-11-20"
+  },
+  "archive-extractor": {
+    "hash": "d8dc25e66fc8",
+    "date": "2026-11-20"
+  },
+  "tar-to-zip-converter": {
+    "hash": "c02ffd8dc92d",
+    "date": "2026-11-20"
+  },
+  "excel-to-csv": {
+    "hash": "0b6b2efc9e08",
+    "date": "2026-11-20"
+  },
+  "csv-to-excel": {
+    "hash": "70d784378414",
+    "date": "2026-11-20"
+  },
+  "excel-to-json": {
+    "hash": "8857b43d8d7a",
+    "date": "2026-11-20"
+  },
+  "excel-to-pdf": {
+    "hash": "d05e45f4d838",
+    "date": "2026-11-20"
+  },
+  "qr-code-generator": {
+    "hash": "87ebbe13b0c2",
+    "date": "2026-11-20"
+  },
+  "qr-code-reader": {
+    "hash": "6e1f35cb8e51",
+    "date": "2026-11-20"
+  },
+  "paint-calculator": {
+    "hash": "40ef95341433",
+    "date": "2026-11-20"
+  },
+  "wallpaper-calculator": {
+    "hash": "b37cf27f06c5",
+    "date": "2026-11-20"
+  },
+  "tile-calculator": {
+    "hash": "90ecef9f8bd9",
+    "date": "2026-11-20"
+  },
+  "flooring-calculator": {
+    "hash": "f35ff7f4862f",
+    "date": "2026-11-20"
+  },
+  "concrete-calculator": {
+    "hash": "000eeabbfcfb",
+    "date": "2026-11-20"
+  },
+  "roofing-calculator": {
+    "hash": "c9f40a4e8f9a",
+    "date": "2026-11-20"
+  },
+  "gravel-mulch-calculator": {
+    "hash": "3c5824fe5c0b",
+    "date": "2026-11-20"
+  }
+}

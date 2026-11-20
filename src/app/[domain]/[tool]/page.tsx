@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { TOOLS, toolBySlug } from "@/lib/registry";
+import { TOOLS, domainBySlug, toolBySlug } from "@/lib/registry";
 import { TOOL_CONTENT } from "@/lib/registry/tool-content";
 import { ToolPage } from "@/components/pages/tool-page";
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sumly.cc";
+import { SITE_URL, appCategory, breadcrumbSchema, jsonLd } from "@/lib/structured-data";
+import { OG_SIZE, ogAlt, ogImagePath } from "@/lib/og";
 
 export function generateStaticParams() {
   return TOOLS.map((t) => ({
@@ -30,6 +30,7 @@ export async function generateMetadata({
   const title = `${t.name} — Free Online Tool`;
   const description = t.description || t.tagline;
   const canonicalUrl = `/${t.domain}/${t.slug}`;
+  const ogImage = { url: ogImagePath(t), ...OG_SIZE, type: "image/png", alt: ogAlt(t) };
 
   return {
     title,
@@ -42,12 +43,14 @@ export async function generateMetadata({
       title: `${t.name} — Sumly`,
       description,
       type: "website",
+      images: [ogImage],
       url: canonicalUrl,
     },
     twitter: {
       card: "summary_large_image",
       title: `${t.name} — Sumly`,
       description: t.tagline,
+      images: [{ url: ogImagePath(t), alt: ogAlt(t) }],
     },
   };
 }
@@ -70,9 +73,9 @@ export default async function ToolRoutePage({
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: t.name,
-    url: `${siteUrl}/${t.domain}/${t.slug}`,
+    url: `${SITE_URL}/${t.domain}/${t.slug}`,
     description: t.description || t.tagline,
-    applicationCategory: "UtilityApplication",
+    applicationCategory: appCategory(t.domain),
     operatingSystem: "All",
     browserRequirements: "Requires JavaScript. Runs client-side in web browser.",
     offers: {
@@ -81,6 +84,13 @@ export default async function ToolRoutePage({
       priceCurrency: "USD",
     },
   };
+
+  // Mirrors the visible breadcrumb: Home > Domain > Tool
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: domainBySlug(t.domain)?.name ?? t.domain, path: `/${t.domain}` },
+    { name: t.name, path: `/${t.domain}/${t.slug}` },
+  ]);
 
   // Schema.org Structured Data: FAQPage
   const faqSchema = {
@@ -98,14 +108,9 @@ export default async function ToolRoutePage({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(webAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(breadcrumbs) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema) }} />
       <ToolPage toolSlug={slug} content={content} />
     </>
   );
