@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { TOOLS, toolBySlug } from "@/lib/registry";
 import { TOOL_CONTENT } from "@/lib/registry/tool-content";
 import { ToolPage } from "@/components/pages/tool-page";
+import { OG_SIZE, ogAlt, ogImagePath } from "@/lib/og";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sumly.cc";
 
@@ -30,6 +31,7 @@ export async function generateMetadata({
   const title = `${t.name} — Free Online Tool`;
   const description = t.description || t.tagline;
   const canonicalUrl = `/${t.domain}/${t.slug}`;
+  const ogImage = { url: ogImagePath(t), ...OG_SIZE, type: "image/png", alt: ogAlt(t) };
 
   return {
     title,
@@ -42,12 +44,14 @@ export async function generateMetadata({
       title: `${t.name} — Sumly`,
       description,
       type: "website",
+      images: [ogImage],
       url: canonicalUrl,
     },
     twitter: {
       card: "summary_large_image",
       title: `${t.name} — Sumly`,
       description: t.tagline,
+      images: [{ url: ogImagePath(t), alt: ogAlt(t) }],
     },
   };
 }
