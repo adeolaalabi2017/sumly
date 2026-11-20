@@ -3,6 +3,7 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import { DOMAINS, TOOLS } from "@/lib/registry";
 
+export const dynamic = "force-static";
 export const alt = "Sumly: professional tools, organized by domain";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
