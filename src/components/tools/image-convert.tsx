@@ -213,7 +213,15 @@ export function ImageConverter({ from, to }: { from: keyof typeof SOURCES; to: T
     urls.current.forEach((u) => URL.revokeObjectURL(u));
     urls.current = [];
   };
-  React.useEffect(() => releaseUrls, []);
+  // False once the page unmounts, so a conversion still running can't create URLs nobody will free.
+  const alive = React.useRef(true);
+  React.useEffect(() => {
+    alive.current = true;
+    return () => {
+      alive.current = false;
+      releaseUrls();
+    };
+  }, []);
 
   const reset = (next: Item[]) => {
     releaseUrls();
@@ -221,6 +229,7 @@ export function ImageConverter({ from, to }: { from: keyof typeof SOURCES; to: T
   };
 
   const add = (files: File[]) => {
+    if (busy) return;
     setNotice("");
     const total = [...items, ...files.map((file) => ({ file }))].reduce((n, i) => n + i.file.size, 0);
     if (total > MAX_TOTAL_BYTES) {
@@ -240,11 +249,13 @@ export function ImageConverter({ from, to }: { from: keyof typeof SOURCES; to: T
 
   const convert = async () => {
     releaseUrls();
+    // The list is locked while this runs (see `busy`), so this snapshot is still the whole list at the end.
     const out: Item[] = [];
     for (const [n, it] of items.entries()) {
       setBusy(`Converting ${n + 1} of ${items.length}…`);
       try {
         const { blob, width, height } = await convertOne(it.file, source, to, quality, { svgWidth: Number(svgWidth), background });
+        if (!alive.current) return;
         const url = URL.createObjectURL(blob);
         urls.current.push(url);
         out.push({ key: it.key, file: it.file, blob, url, width, height, outName: swapExt(it.file.name, source, to) });
@@ -254,6 +265,7 @@ export function ImageConverter({ from, to }: { from: keyof typeof SOURCES; to: T
       // Let the page paint between pictures; HEIC decoding blocks the thread.
       await new Promise((r) => setTimeout(r, 0));
     }
+    if (!alive.current) return;
     setItems(out);
     setBusy("");
   };
@@ -277,6 +289,7 @@ export function ImageConverter({ from, to }: { from: keyof typeof SOURCES; to: T
             multiple
             accept={source.accept}
             onFiles={add}
+            disabled={!!busy}
             title={`Add ${source.label} images`}
             hint={`Pick one or many. Converted on your device, nothing is uploaded.`}
           />
@@ -308,6 +321,7 @@ export function ImageConverter({ from, to }: { from: keyof typeof SOURCES; to: T
                     variant="ghost"
                     size="sm"
                     onClick={() => reset(items.filter((x) => x.key !== it.key))}
+                    disabled={!!busy}
                     aria-label={`Remove ${it.file.name}`}
                   >
                     Remove

@@ -17,6 +17,7 @@ export function FileDropZone({
   title,
   hint = "Files stay on your device. Nothing is uploaded.",
   folder = false,
+  disabled = false,
 }: {
   onFiles: (files: File[]) => void;
   accept?: string;
@@ -25,6 +26,8 @@ export function FileDropZone({
   hint?: string;
   /** Pick a whole folder; each file keeps its path inside it. */
   folder?: boolean;
+  /** Ignore picks and drops, for while a conversion is running. */
+  disabled?: boolean;
 }) {
   const id = React.useId();
   const [over, setOver] = React.useState(false);
@@ -35,19 +38,20 @@ export function FileDropZone({
       htmlFor={id}
       onDragOver={(e) => {
         e.preventDefault();
-        setOver(true);
+        if (!disabled) setOver(true);
       }}
       onDragLeave={() => setOver(false)}
       onDrop={(e) => {
         e.preventDefault();
         setOver(false);
         const dropped = [...e.dataTransfer.files];
-        if (dropped.length) onFiles(multiple ? dropped : dropped.slice(0, 1));
+        if (!disabled && dropped.length) onFiles(multiple ? dropped : dropped.slice(0, 1));
       }}
       className={cn(
         "flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed bg-card p-6 text-center transition-colors",
         "hover:border-primary/50 hover:bg-accent/40 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-primary",
-        over && "border-primary bg-accent/50"
+        over && "border-primary bg-accent/50",
+        disabled && "pointer-events-none opacity-60"
       )}
     >
       <FileUp className="h-6 w-6 text-muted-foreground" aria-hidden />
@@ -59,6 +63,7 @@ export function FileDropZone({
         accept={accept}
         multiple={multiple || folder}
         className="sr-only"
+        disabled={disabled}
         {...folderProps}
         onChange={(e) => {
           const picked = [...(e.target.files ?? [])];
