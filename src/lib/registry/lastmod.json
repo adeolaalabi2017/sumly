@@ -615,6 +615,82 @@
     "hash": "2d8387ad2fe6",
     "date": "2026-11-20"
   },
+  "pdf-to-text": {
+    "hash": "ec3edb97da00",
+    "date": "2026-11-21"
+  },
+  "pdf-to-csv": {
+    "hash": "2183adcd1d0c",
+    "date": "2026-11-21"
+  },
+  "pdf-to-excel": {
+    "hash": "cf5c76eb7b2c",
+    "date": "2026-11-21"
+  },
+  "pdf-to-word": {
+    "hash": "ac6502909ff8",
+    "date": "2026-11-21"
+  },
+  "pdf-to-epub": {
+    "hash": "a703628b2c3a",
+    "date": "2026-11-21"
+  },
+  "jpg-to-png": {
+    "hash": "dcbfedb6a5a8",
+    "date": "2026-11-21"
+  },
+  "png-to-jpg": {
+    "hash": "b177506fb17d",
+    "date": "2026-11-21"
+  },
+  "webp-to-png": {
+    "hash": "e7d4563e111c",
+    "date": "2026-11-21"
+  },
+  "webp-to-jpg": {
+    "hash": "fb1b84d1102c",
+    "date": "2026-11-21"
+  },
+  "png-to-webp": {
+    "hash": "095ef66931ac",
+    "date": "2026-11-21"
+  },
+  "jpg-to-webp": {
+    "hash": "5ed2d5d09e36",
+    "date": "2026-11-21"
+  },
+  "heic-to-jpg": {
+    "hash": "4fd50471befc",
+    "date": "2026-11-21"
+  },
+  "heic-to-png": {
+    "hash": "a96a18d00447",
+    "date": "2026-11-21"
+  },
+  "avif-to-jpg": {
+    "hash": "fc552941f435",
+    "date": "2026-11-21"
+  },
+  "gif-to-jpg": {
+    "hash": "0dc30a21e662",
+    "date": "2026-11-21"
+  },
+  "svg-to-png": {
+    "hash": "fa7e0f6c391e",
+    "date": "2026-11-21"
+  },
+  "svg-to-jpg": {
+    "hash": "24bb9c5c3b67",
+    "date": "2026-11-21"
+  },
+  "tiff-to-jpg": {
+    "hash": "d7877253d27a",
+    "date": "2026-11-21"
+  },
+  "merge-images": {
+    "hash": "9b89f7431b1f",
+    "date": "2026-11-21"
+  },
   "zip-file-creator": {
     "hash": "34983b504f3c",
     "date": "2026-11-20"
