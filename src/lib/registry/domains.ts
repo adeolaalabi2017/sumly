@@ -168,7 +168,7 @@ export const DOMAINS: Domain[] = [
     name: "Files & Documents",
     shortName: "Files",
     description:
-      "Merge, split and convert PDFs, convert spreadsheets, and pack or unpack ZIP and TAR archives, all in your browser with nothing uploaded.",
+      "Convert PDFs to Word, Excel and text, convert and merge images, split and merge PDFs, and handle spreadsheets and ZIP files, all in your browser.",
     icon: FileArchive,
     status: "live",
     phase: 5,
