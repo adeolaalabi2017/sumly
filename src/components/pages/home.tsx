@@ -47,7 +47,8 @@ export function HomePage() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            aria-label={`Search ${TOOLS.length} tools`}
+            // The label must contain the visible text (WCAG 2.5.3) and still say what the button does.
+            aria-label={`Loan payment, format JSON, merge PDF: search ${TOOLS.length} tools`}
             aria-keyshortcuts="Meta+K Control+K /"
             className="flex h-16 min-w-0 flex-[1_1_280px] items-center justify-between gap-4 rounded-md border-[1.5px] border-input bg-card px-4 text-left text-xl text-muted-foreground"
           >
