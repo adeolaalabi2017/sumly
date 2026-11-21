@@ -8,6 +8,7 @@ import { Slider } from "@/components/ui/slider";
 import { CalcLayout, FieldGrid, ResultHero, SelectField, Verdict, downloadBlob } from "./ui";
 import { FileDropZone, MAX_TOTAL_BYTES, nextFileKey } from "./file-drop";
 import { bytesToBlob, fmtBytes, writeArchive } from "@/lib/archive";
+import { MAX_PIXELS, canvasKeepsPixels } from "@/lib/canvas-limits";
 
 /**
  * One converter behind eight pages: JPG, PNG, WebP and HEIC in, JPG, PNG and
@@ -19,9 +20,6 @@ type Target = "jpg" | "png" | "webp";
 
 const MIME: Record<Target, string> = { jpg: "image/jpeg", png: "image/png", webp: "image/webp" };
 const LABEL: Record<Target, string> = { jpg: "JPG", png: "PNG", webp: "WebP" };
-
-/** Largest picture, in pixels, a phone or laptop tab can safely hold as a bitmap and a canvas. */
-const MAX_PIXELS = 120_000_000;
 
 interface Source {
   label: string;
@@ -175,6 +173,8 @@ async function convertOne(file: File, source: Source, to: Target, quality: numbe
     canvas.height = height;
     const ctx = canvas.getContext("2d");
     if (!ctx) throw new Error("No canvas");
+    // Some browsers hand back a blank canvas instead of failing when it is too big.
+    if (!canvasKeepsPixels(ctx, width, height)) throw new RangeError("too large");
     // JPG has no transparency, so transparent areas get a solid colour (white unless chosen) instead of black.
     if (to === "jpg") {
       ctx.fillStyle = opts.background;
@@ -193,6 +193,10 @@ async function convertOne(file: File, source: Source, to: Target, quality: numbe
 function failure(e: unknown, source: Source): string {
   if (e instanceof TypeError && /can't save/.test(e.message)) return e.message;
   if (e instanceof RangeError) return "That picture is too large to convert in the browser.";
+  // An SVG that uses <foreignObject> or external content taints the canvas, so it can be drawn but not saved.
+  if (e instanceof DOMException && e.name === "SecurityError") {
+    return "That SVG uses features browsers can't export to an image, such as embedded web content (foreignObject) or linked files. Remove them and try again.";
+  }
   return `That file couldn't be read as a ${source.label}. It may be damaged or a different kind of file.`;
 }
 
@@ -312,7 +316,7 @@ export function ImageConverter({ from, to }: { from: keyof typeof SOURCES; to: T
                     </span>
                   </span>
                   {it.blob && (
-                    <Button type="button" variant="outline" size="sm" className="gap-1.5" onClick={() => downloadBlob(it.outName!, it.blob!)} aria-label={`Download ${it.outName}`}>
+                    <Button type="button" variant="outline" size="sm" className="gap-1.5" onClick={() => downloadBlob(it.outName!, it.blob!)} aria-label={`Save ${it.outName}`}>
                       <Download className="h-3.5 w-3.5" aria-hidden /> Save
                     </Button>
                   )}

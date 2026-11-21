@@ -19,9 +19,7 @@ export interface Placement {
   rects: Rect[];
 }
 
-/** Browsers cap a canvas by side length and, on phones, by total pixels. */
-export const MAX_SIDE = 16384;
-export const MAX_PIXELS = 100_000_000;
+import { MAX_PIXELS, MAX_SIDE } from "./canvas-limits";
 
 const pick = (values: number[], fit: MergeFit) => (fit === "largest" ? Math.max(...values) : Math.min(...values));
 
@@ -74,8 +72,8 @@ export function placePictures(sizes: Size[], layout: MergeLayout, opts: { gap: n
 }
 
 /** How much to shrink a result so it fits the canvas limits; 1 when it already does. */
-export function shrinkFactor(width: number, height: number): number {
-  return Math.min(1, MAX_SIDE / Math.max(width, height), Math.sqrt(MAX_PIXELS / (width * height)));
+export function shrinkFactor(width: number, height: number, maxPixels: number = MAX_PIXELS): number {
+  return Math.min(1, MAX_SIDE / Math.max(width, height), Math.sqrt(maxPixels / (width * height)));
 }
 
 /** Apply a shrink factor to a placement. */

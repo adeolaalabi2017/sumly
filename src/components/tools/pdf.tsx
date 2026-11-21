@@ -70,7 +70,7 @@ const canvasToBlob = (canvas: HTMLCanvasElement, type: string, quality?: number)
 const pdfBlob = (bytes: Uint8Array) => bytesToBlob(bytes, "application/pdf");
 export const baseName = (fileName: string) => fileName.replace(/\.pdf$/i, "") || "document";
 const pagesLabel = (n: number) => `${n} page${n === 1 ? "" : "s"}`;
-const tooBig = (bytes: number) =>
+export const tooBig = (bytes: number) =>
   bytes > MAX_TOTAL_BYTES ? `That's ${fmtBytes(bytes)}. The browser tools handle up to ${fmtBytes(MAX_TOTAL_BYTES)} at a time.` : "";
 
 /** A single opened PDF with its page count, shared by the one-file tools. */

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CalcLayout, FieldGrid, ResultHero, SelectField, Verdict, downloadBlob } from "./ui";
 import { FileDropZone, FileList, MAX_TOTAL_BYTES, nextFileKey } from "./file-drop";
 import { fmtBytes } from "@/lib/archive";
+import { MAX_DECODED_PIXELS, MAX_PIXELS, SAFE_PIXELS, canvasKeepsPixels } from "@/lib/canvas-limits";
 import { placePictures, scalePlacement, shrinkFactor, type MergeFit, type MergeLayout } from "@/lib/merge-layout";
 
 interface Picture {
@@ -86,6 +87,7 @@ export function MergeImages() {
     (async () => {
       try {
         const loaded: ImageBitmap[] = [];
+        let decodedPixels = 0;
         for (const p of pictures) {
           let b = bitmaps.current.get(p.key);
           if (!b) {
@@ -94,8 +96,16 @@ export function MergeImages() {
               b.close();
               return;
             }
+            // Decoded pictures cost width x height x 4 bytes each, however small the files are.
+            if (decodedPixels + b.width * b.height > MAX_DECODED_PIXELS) {
+              b.close();
+              setResult(null);
+              setError("Those pictures are too large to merge in one go. Remove some, or use smaller ones.");
+              return;
+            }
             bitmaps.current.set(p.key, b);
           }
+          decodedPixels += b.width * b.height;
           loaded.push(b);
         }
         if (cancelled || !canvas.current) return;
@@ -104,21 +114,32 @@ export function MergeImages() {
           layout,
           { gap: Number(gap), columns: Number(columns), fit }
         );
-        const factor = shrinkFactor(full.width, full.height);
-        const placed = scalePlacement(full, factor);
         const el = canvas.current;
-        el.width = placed.width;
-        el.height = placed.height;
-        const ctx = el.getContext("2d");
-        if (!ctx) throw new Error("No canvas");
-        ctx.clearRect(0, 0, el.width, el.height);
-        if (!transparent) {
-          ctx.fillStyle = background;
-          ctx.fillRect(0, 0, el.width, el.height);
+        // Try the full size first. A browser that caps canvas area (older iOS Safari) returns a
+        // blank canvas without an error, so check it and fall back to a size it does draw.
+        let drawn = false;
+        for (const cap of [MAX_PIXELS, SAFE_PIXELS]) {
+          const factor = shrinkFactor(full.width, full.height, cap);
+          const placed = scalePlacement(full, factor);
+          el.width = placed.width;
+          el.height = placed.height;
+          const ctx = el.getContext("2d");
+          if (!ctx) throw new Error("No canvas");
+          if (!canvasKeepsPixels(ctx, el.width, el.height)) continue;
+          if (!transparent) {
+            ctx.fillStyle = background;
+            ctx.fillRect(0, 0, el.width, el.height);
+          }
+          ctx.imageSmoothingQuality = "high";
+          placed.rects.forEach((r, i) => ctx.drawImage(loaded[i], r.x, r.y, r.w, r.h));
+          setResult({ width: placed.width, height: placed.height, shrunk: factor < 1 });
+          drawn = true;
+          break;
         }
-        ctx.imageSmoothingQuality = "high";
-        placed.rects.forEach((r, i) => ctx.drawImage(loaded[i], r.x, r.y, r.w, r.h));
-        setResult({ width: placed.width, height: placed.height, shrunk: factor < 1 });
+        if (!drawn) {
+          setResult(null);
+          setError("This browser can't make an image that large. Use fewer or smaller pictures.");
+        }
       } catch {
         if (!cancelled) {
           setResult(null);
@@ -241,7 +262,7 @@ export function MergeImages() {
             {notice && <Verdict tone="warn">{notice}</Verdict>}
             {result?.shrunk && <Verdict tone="warn">The result was too large for a browser to draw, so it was scaled down to fit.</Verdict>}
             <div className="overflow-hidden rounded-lg border bg-[repeating-conic-gradient(var(--muted)_0%_25%,transparent_0%_50%)] bg-[length:16px_16px] p-2">
-              <canvas ref={canvas} aria-label="Preview of the merged image" className="mx-auto h-auto max-h-96 w-auto max-w-full" />
+              <canvas ref={canvas} role="img" aria-label="Preview of the merged image" className="mx-auto h-auto max-h-96 w-auto max-w-full" />
             </div>
             <Button type="button" className="w-full gap-2" onClick={save} disabled={!result}>
               <Download className="h-4 w-4" aria-hidden /> Download merged.{effectiveFormat}
