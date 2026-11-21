@@ -30,9 +30,9 @@ function loadPdfjs() {
   return pdfjsPromise;
 }
 
-const readBytes = async (file: File) => new Uint8Array(await file.arrayBuffer());
+export const readBytes = async (file: File) => new Uint8Array(await file.arrayBuffer());
 
-function pdfError(e: unknown): string {
+export function pdfError(e: unknown): string {
   const name = e instanceof Error ? e.name : "";
   const msg = e instanceof Error ? e.message : String(e);
   if (name === "EncryptedPDFError" || name === "PasswordException" || /encrypt|password/i.test(msg)) {
@@ -45,7 +45,7 @@ function pdfError(e: unknown): string {
  * Open a PDF for rendering; call close() when done to free the worker's copy.
  * pdf.js takes ownership of the buffer it is given, so it gets a copy.
  */
-async function openWithPdfjs(bytes: Uint8Array): Promise<{ doc: PDFDocumentProxy; close: () => Promise<void> }> {
+export async function openWithPdfjs(bytes: Uint8Array): Promise<{ doc: PDFDocumentProxy; close: () => Promise<void> }> {
   const pdfjs = await loadPdfjs();
   const task = pdfjs.getDocument({ data: bytes.slice() });
   return { doc: await task.promise, close: () => task.destroy() };
@@ -68,13 +68,13 @@ const canvasToBlob = (canvas: HTMLCanvasElement, type: string, quality?: number)
   );
 
 const pdfBlob = (bytes: Uint8Array) => bytesToBlob(bytes, "application/pdf");
-const baseName = (fileName: string) => fileName.replace(/\.pdf$/i, "") || "document";
+export const baseName = (fileName: string) => fileName.replace(/\.pdf$/i, "") || "document";
 const pagesLabel = (n: number) => `${n} page${n === 1 ? "" : "s"}`;
 const tooBig = (bytes: number) =>
   bytes > MAX_TOTAL_BYTES ? `That's ${fmtBytes(bytes)}. The browser tools handle up to ${fmtBytes(MAX_TOTAL_BYTES)} at a time.` : "";
 
 /** A single opened PDF with its page count, shared by the one-file tools. */
-function useSinglePdf() {
+export function useSinglePdf() {
   const [file, setFile] = React.useState<File | null>(null);
   const [pageCount, setPageCount] = React.useState(0);
   const [error, setError] = React.useState("");

@@ -4028,4 +4028,549 @@ export const TOOL_CONTENT: Record<string, ToolContent> = {
       },
     ],
   },
+  "jpg-to-png": {
+    howItWorks: [
+      "Each JPG is decoded and saved again as a PNG at its full pixel size. PNG is lossless, so the new file holds exactly the pixels of the JPG, with no further quality loss.",
+      "A JPG is already compressed, so converting it to PNG cannot bring back detail the JPG lost. The PNG is usually several times larger, which is the price of the lossless format.",
+      "Photos saved with a camera rotation come out the right way up.",
+    ],
+    example:
+      "A 2 MB JPG photo of 4,000 × 3,000 pixels becomes a PNG of the same 4,000 × 3,000 pixels. Expect the PNG to be roughly 8 to 15 MB, because PNG compresses photographs poorly.",
+    faqs: [
+      {
+        q: "Why is the PNG so much bigger?",
+        a: "PNG stores every pixel without losing anything, and it compresses photos poorly. JPG throws away detail the eye is unlikely to miss to get small files.",
+      },
+      {
+        q: "Will it look better than the JPG?",
+        a: "No. It will look the same. Convert to PNG when an app needs PNG, or before editing and re-saving repeatedly, not to improve quality.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "png-to-jpg": {
+    howItWorks: [
+      "Each PNG is drawn onto a canvas and saved as a JPG at the quality you choose. 90% is near-identical to the eye for most pictures, and lower values give smaller files.",
+      "JPG cannot hold transparency, so transparent areas are filled with white. A logo with a see-through background will come out on a white one.",
+      "Screenshots, text and sharp-edged graphics can show faint blur around edges in a JPG. For those, PNG or WebP is usually the better format.",
+    ],
+    example:
+      "A 3.4 MB PNG photo saved as a JPG at 90% quality is typically a few hundred kilobytes, around a tenth of the size, with no difference you can see at normal viewing size.",
+    faqs: [
+      {
+        q: "Why did my transparent background turn white?",
+        a: "JPG has no transparency. Transparent pixels are filled with white so they do not turn black. Keep the PNG, or use WebP, if you need transparency.",
+      },
+      {
+        q: "What quality should I pick?",
+        a: "Use 90% for the best look, 80% for a good balance and 60% when small size matters most. Check the file size shown after converting.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "webp-to-png": {
+    howItWorks: [
+      "Each WebP is decoded and saved as a PNG at its full pixel size. Transparency in the WebP is kept, so a cut-out logo stays cut out.",
+      "PNG is lossless, so the PNG holds exactly the pixels of the WebP. If the WebP was lossy, its lost detail does not come back, and the PNG is usually larger.",
+      "Only the first frame of an animated WebP is converted.",
+    ],
+    example:
+      "A 120 KB WebP banner of 1,200 × 600 pixels becomes a 1,200 × 600 pixel PNG, often 3 to 6 times larger, with the same look and any transparency intact.",
+    faqs: [
+      {
+        q: "Why convert WebP to PNG?",
+        a: "Many older editors, upload forms and document tools still reject WebP files. PNG is accepted almost everywhere.",
+      },
+      {
+        q: "Is an animated WebP kept animated?",
+        a: "No. The result is one still image from the first frame. PNG in this tool is a single picture.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "webp-to-jpg": {
+    howItWorks: [
+      "Each WebP is decoded and saved as a JPG at the quality you choose. 90% looks the same as the original for most pictures.",
+      "JPG cannot hold transparency, so transparent areas are filled with white. To keep transparency, convert to PNG instead.",
+      "Only the first frame of an animated WebP is converted.",
+    ],
+    example:
+      "A 150 KB WebP photo of 1,600 × 1,200 pixels saved as a JPG at 90% quality is typically 250 to 450 KB, because JPG is a bit less efficient than WebP for the same look.",
+    faqs: [
+      {
+        q: "Why is the JPG bigger than the WebP?",
+        a: "WebP compresses more efficiently, so the same picture takes less space. Lower the quality slider if you need the JPG smaller.",
+      },
+      {
+        q: "Where does the transparency go?",
+        a: "JPG has none, so see-through areas become white. Use WebP to PNG if you need to keep it.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "png-to-webp": {
+    howItWorks: [
+      "Each PNG is saved as a WebP at the quality you choose. Transparency is kept, which JPG cannot do, so this suits logos, icons and cut-outs on the web.",
+      "WebP is lossy at this setting. 90% looks the same to the eye in most cases, and lower values give smaller files. Photos shrink the most, often by well over half.",
+      "If a browser cannot save WebP, the tool says so instead of handing you a file with the wrong format.",
+    ],
+    example:
+      "A 1.2 MB PNG screenshot of 1,920 × 1,080 pixels saved as a WebP at 90% quality is typically 100 to 250 KB, with transparency intact.",
+    faqs: [
+      {
+        q: "Is WebP supported everywhere?",
+        a: "All current browsers display it. Some older desktop programs, email clients and upload forms still reject it, so keep the PNG for those.",
+      },
+      {
+        q: "Will it look worse than the PNG?",
+        a: "At 90% you are unlikely to see a difference. Lowering the quality shrinks the file further and makes softness around sharp edges more noticeable.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "jpg-to-webp": {
+    howItWorks: [
+      "Each JPG is saved as a WebP at the quality you choose. WebP files are usually 25 to 35% smaller than a JPG of the same look, which makes pages load faster.",
+      "Converting an already-compressed JPG compresses it a second time, so each save loses a little detail. Convert from the original photo if you have it, and keep the JPG as a backup.",
+      "Photos saved with a camera rotation come out the right way up.",
+    ],
+    example:
+      "A 500 KB JPG photo saved as a WebP at 80% quality is typically 250 to 350 KB, a saving of about a third to a half with no change you would notice.",
+    faqs: [
+      {
+        q: "What quality gives the best saving?",
+        a: "Try 80%, the usual sweet spot for photos. Go lower for thumbnails and higher for detailed images. The tool shows the size of each file so you can compare.",
+      },
+      {
+        q: "Do I have to switch my whole site to WebP?",
+        a: "No. You can serve WebP to browsers that accept it and keep the JPG as a fallback for the few that do not.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "heic-to-jpg": {
+    howItWorks: [
+      "iPhones and iPads save photos as HEIC, a compact format that most Windows programs, websites and email attachments cannot open. This tool decodes each HEIC and saves it as a JPG that opens anywhere.",
+      "Browsers other than Safari cannot read HEIC, so a small decoder is loaded the first time you convert one. That first conversion takes a moment, and large photos take a few seconds each.",
+      "The photo keeps its pixel size and comes out the right way up. Choose a quality of 90% for the best look or lower for smaller files.",
+    ],
+    example:
+      "A 2.1 MB iPhone HEIC photo of 4,032 × 3,024 pixels becomes a JPG of the same size, typically 2 to 4 MB at 90% quality, ready to attach to an email or upload to a form.",
+    faqs: [
+      {
+        q: "Why won't my iPhone photo open on my PC?",
+        a: "HEIC is the iPhone's default photo format, and Windows needs an extra codec to open it. Converting to JPG gives a file that opens everywhere.",
+      },
+      {
+        q: "Will Live Photos or burst photos convert?",
+        a: "Only the main still image is converted. Videos and extra frames in the file are left out.",
+      },
+      {
+        q: "Why is the JPG bigger than the HEIC?",
+        a: "HEIC compresses roughly twice as well as JPG, so the same photo takes more space as a JPG.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "heic-to-png": {
+    howItWorks: [
+      "iPhones and iPads save photos as HEIC, which most Windows programs and websites cannot open. This tool decodes each HEIC and saves it as a lossless PNG.",
+      "Browsers other than Safari cannot read HEIC, so a small decoder is loaded the first time you convert one. Large photos take a few seconds each.",
+      "PNG keeps every pixel but is much larger than JPG for photos. Choose HEIC to JPG instead unless you need PNG.",
+    ],
+    example:
+      "A 2.1 MB iPhone HEIC photo of 4,032 × 3,024 pixels becomes a PNG of the same size, typically 15 to 25 MB, because PNG stores photographs without compression loss.",
+    faqs: [
+      {
+        q: "Should I pick PNG or JPG?",
+        a: "JPG for sharing and uploading, since the files are far smaller. PNG when you plan to edit the photo and re-save it, or an app requires PNG.",
+      },
+      {
+        q: "Why is the PNG so big?",
+        a: "PNG is lossless and compresses photos poorly. A photo that is 2 MB as HEIC can easily reach 20 MB as PNG.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "pdf-to-text": {
+    howItWorks: [
+      "The text layer of every page is read from the PDF. Each piece of text carries its position on the page, so lines are rebuilt from the fragments that share a height, in reading order from top to bottom.",
+      "Lines are joined into paragraphs, and a larger-than-usual gap starts a new one. A word split by a hyphen at the end of a line is joined back together. Pages are separated by a blank line, or by a marker line if you prefer.",
+      "Only text a PDF already contains can be read. Scanned pages, text drawn as pictures and text inside images produce nothing.",
+    ],
+    example:
+      "A 3-page report with about 1,500 words becomes a plain .txt file of roughly 9 KB. Paragraphs are separated by blank lines and headings stand on their own lines.",
+    faqs: [
+      {
+        q: "Does it work on scanned PDFs?",
+        a: "No. A scan is a picture of a page with no text in it, so there is nothing to read. Converting it needs OCR (text recognition), which these tools do not do. If you can select and copy text in your PDF reader, it will work.",
+      },
+      {
+        q: "Why is the order of the text wrong?",
+        a: "Pages with several columns, sidebars or text boxes store the text in the order the PDF was made, not always the order you read it. Copy the section you need, or try the Word converter, which keeps paragraphs together.",
+      },
+      {
+        q: "Is there a page limit?",
+        a: "Up to 500 pages at a time. Split longer files with the Split PDF tool first.",
+      },
+      {
+        q: "Is the PDF uploaded?",
+        a: "No. It is read and converted inside your browser tab, and the result is saved straight from it.",
+      },
+      {
+        q: "What about password-protected PDFs?",
+        a: "Remove the password in your PDF reader first and save a copy, then open that copy here.",
+      },
+    ],
+  },
+  "pdf-to-csv": {
+    howItWorks: [
+      "The text on each page is read with its position. Text on the same line becomes one row, and text that starts at the same distance from the left edge on several lines becomes one column.",
+      "This suits simple tables such as statements, price lists and exports, where the columns line up. Tables with merged cells, wrapped text in a cell, or no clear columns need tidying afterward, so check the preview.",
+      "Columns are worked out page by page and the rows are stacked in order. Cells that begin with a character spreadsheets treat as a formula, such as =, +, - or @, are prefixed with an apostrophe so nothing runs when you open the file.",
+    ],
+    example:
+      "A 2-page price list with columns Item, Size and Price becomes a CSV with one row per line and three columns, ready for a spreadsheet. A line of text with only a heading becomes a row with one filled cell.",
+    faqs: [
+      {
+        q: "Does it work on scanned PDFs?",
+        a: "No. A scan is a picture of a page with no text in it, so there is nothing to read. Converting it needs OCR (text recognition), which these tools do not do. If you can select and copy text in your PDF reader, it will work.",
+      },
+      {
+        q: "Why are two columns merged into one?",
+        a: "Columns are found from where text starts. If two columns sit very close together, or text in one runs into the next, they can merge. Split them in your spreadsheet with Text to Columns.",
+      },
+      {
+        q: "Which separator should I choose?",
+        a: "Comma suits most programs. Semicolon opens correctly in Excel in countries that use a decimal comma, and tab suits text that contains commas.",
+      },
+      {
+        q: "Is the PDF uploaded?",
+        a: "No. It is read and converted inside your browser tab, and the result is saved straight from it.",
+      },
+    ],
+  },
+  "pdf-to-excel": {
+    howItWorks: [
+      "The text on each page is read with its position. Text on the same line becomes one row, and text that starts at the same distance from the left edge on several lines becomes one column.",
+      "Choose one sheet for the whole PDF, or one sheet per page. Plain numbers are stored as real numbers so you can add and sort them, while codes with leading zeros and numbers longer than 15 digits stay as text so Excel does not change them.",
+      "This suits simple tables such as statements and price lists. Tables with merged cells or wrapped text in a cell need tidying afterward, so check the preview. Text is never stored as a formula.",
+    ],
+    example:
+      "A 4-page bank statement with columns Date, Description and Amount becomes a workbook with one sheet, a row per line and three columns, with the amounts stored as numbers.",
+    faqs: [
+      {
+        q: "Does it work on scanned PDFs?",
+        a: "No. A scan is a picture of a page with no text in it, so there is nothing to read. Converting it needs OCR (text recognition), which these tools do not do. If you can select and copy text in your PDF reader, it will work.",
+      },
+      {
+        q: "Will dates become Excel dates?",
+        a: "No. Dates stay as the text in the PDF so that day-first and month-first dates are never misread. Excel can convert them with Text to Columns.",
+      },
+      {
+        q: "Why are two columns merged into one?",
+        a: "Columns are found from where text starts. If two columns sit very close together they can merge. Split them with Text to Columns in Excel.",
+      },
+      {
+        q: "Is the PDF uploaded?",
+        a: "No. It is read and converted inside your browser tab, and the result is saved straight from it.",
+      },
+      {
+        q: "What about password-protected PDFs?",
+        a: "Remove the password in your PDF reader first and save a copy, then open that copy here.",
+      },
+    ],
+  },
+  "pdf-to-word": {
+    howItWorks: [
+      "The text of each page is read with its position and size. Lines are joined into paragraphs, and short lines set in clearly larger type become headings, which Word shows in its Heading 1 style so you get a working outline.",
+      "The result is a clean .docx you can edit, reuse and reflow, not a copy of the page. Columns, images, tables, headers, footers and fonts are not carried over.",
+      "Only text a PDF already contains can be read. Scanned pages have no text and need OCR first.",
+    ],
+    example:
+      "A 5-page article with three section titles becomes a Word document with three headings and the paragraphs between them in order, about 20 KB with no images.",
+    faqs: [
+      {
+        q: "Does it work on scanned PDFs?",
+        a: "No. A scan is a picture of a page with no text in it, so there is nothing to read. Converting it needs OCR (text recognition), which these tools do not do. If you can select and copy text in your PDF reader, it will work.",
+      },
+      {
+        q: "Will it keep my layout, images and tables?",
+        a: "No. Only the text, paragraphs and headings are kept. For a layout-faithful conversion you need desktop software, which is a different kind of tool.",
+      },
+      {
+        q: "Can I open it in Google Docs?",
+        a: "Yes. Upload the .docx to Google Drive and open it with Google Docs, or use File then Open in Docs. The same applies to Pages and LibreOffice.",
+      },
+      {
+        q: "What about the older .doc format?",
+        a: "The file is a modern .docx, which Word, Google Docs, Pages and LibreOffice all open. Use Save As in Word if you need a .doc.",
+      },
+      {
+        q: "Is the PDF uploaded?",
+        a: "No. It is read and converted inside your browser tab, and the result is saved straight from it.",
+      },
+    ],
+  },
+  "pdf-to-epub": {
+    howItWorks: [
+      "The text of each page is read with its position and size. Lines are joined into paragraphs, and short lines in clearly larger type become headings. Pages are grouped into chapters of the length you choose, and a contents page links to each.",
+      "The EPUB is reflowable: the text wraps to the screen and the reader can change the font and size. Images, tables and the original page layout are not carried over.",
+      "Only text a PDF already contains can be read. Scanned books have no text and need OCR first.",
+    ],
+    example:
+      "A 60-page report converted with a chapter every 10 pages becomes an EPUB with 6 chapters, titled Pages 1–10 through Pages 51–60, plus a contents page.",
+    faqs: [
+      {
+        q: "Does it work on scanned PDFs?",
+        a: "No. A scan is a picture of a page with no text in it, so there is nothing to read. Converting it needs OCR (text recognition), which these tools do not do. If you can select and copy text in your PDF reader, it will work.",
+      },
+      {
+        q: "Which apps open it?",
+        a: "Apple Books, Google Play Books, Kobo, Calibre and most e-readers. Amazon Kindles accept EPUB through Send to Kindle.",
+      },
+      {
+        q: "Why do chapters have page-range names?",
+        a: "A PDF does not record where chapters start. Pages are grouped by count instead. Choose the whole book as one chapter if you prefer, and set a title.",
+      },
+      {
+        q: "Is the PDF uploaded?",
+        a: "No. It is read and converted inside your browser tab, and the result is saved straight from it.",
+      },
+      {
+        q: "What about password-protected PDFs?",
+        a: "Remove the password in your PDF reader first and save a copy, then open that copy here.",
+      },
+    ],
+  },
+  "avif-to-jpg": {
+    howItWorks: [
+      "Each AVIF is decoded by your browser and saved as a JPG at the quality you choose. AVIF is a modern format with small files, but many editors, upload forms and older programs still reject it.",
+      "JPG cannot hold transparency, so transparent areas are filled with white. 90% quality looks the same as the original for most pictures.",
+      "Browsers that are too old to open AVIF cannot convert it, and the tool tells you which file failed.",
+    ],
+    example:
+      "A 180 KB AVIF photo of 2,000 × 1,333 pixels saved as a JPG at 90% quality is typically 400 to 700 KB, because AVIF compresses more efficiently than JPG for the same look.",
+    faqs: [
+      {
+        q: "Why is the JPG bigger than the AVIF?",
+        a: "AVIF compresses much better than JPG, so the same picture takes more space. Lower the quality slider if you need the JPG smaller.",
+      },
+      {
+        q: "Is an animated AVIF kept animated?",
+        a: "No. The result is a still image from the first frame.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "gif-to-jpg": {
+    howItWorks: [
+      "Each GIF is decoded and its first frame is saved as a JPG at the quality you choose. An animated GIF therefore becomes a single still picture, not a set of frames.",
+      "GIFs hold at most 256 colours, so a JPG made from one may be larger than the GIF while looking identical. JPG cannot hold transparency, so transparent areas are filled with white.",
+      "To keep the animation, leave the file as a GIF or convert it to a video.",
+    ],
+    example:
+      "A 400 × 300 pixel animated GIF becomes a 400 × 300 pixel JPG showing its first frame, typically 20 to 60 KB.",
+    faqs: [
+      {
+        q: "Can I get every frame of the GIF?",
+        a: "Not with this tool. It saves the first frame only.",
+      },
+      {
+        q: "Why do my GIF colours look different?",
+        a: "A GIF uses a limited palette and a JPG blends colours smoothly, so flat areas can show faint banding or noise at low quality. Use a higher quality setting, or convert to PNG.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "svg-to-png": {
+    howItWorks: [
+      "An SVG is a drawing made of shapes and text, so it has no fixed pixel size. You choose the width, from 256 to 4096 pixels, and the height follows the drawing's shape. The browser draws it at that size, so lines and curves stay sharp.",
+      "The PNG keeps any transparent background in the SVG, which suits logos and icons.",
+      "The SVG is loaded as a picture, so scripts inside it do not run and files it links to are not fetched. Fonts that are not embedded in the file may be replaced by a default font.",
+    ],
+    example:
+      "A 24 × 24 icon drawn at 1024 pixels wide becomes a 1,024 × 1,024 pixel PNG with the same crisp edges and a transparent background.",
+    faqs: [
+      {
+        q: "What size should I choose?",
+        a: "Choose the largest size you will need. Screens and web pages are usually fine with 512 or 1024 pixels, and print or high-density displays need 2048 or 4096. An SVG can be redrawn at any size, so you can convert again.",
+      },
+      {
+        q: "Why does my text look different?",
+        a: "If the SVG uses a font that is not embedded in the file, your browser replaces it. Convert the text to outlines in your drawing program first to keep it exact.",
+      },
+      {
+        q: "Why can't I choose an exact height?",
+        a: "The height follows the shape of the drawing so nothing is stretched. Choose the width you need and the height is worked out.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "svg-to-jpg": {
+    howItWorks: [
+      "An SVG is a drawing made of shapes and text, so it has no fixed pixel size. You choose the width, from 256 to 4096 pixels, and the height follows the drawing's shape. The browser draws it at that size, so lines and curves stay sharp.",
+      "JPG cannot hold transparency, so the drawing is placed on a white or black background of your choice.",
+      "The SVG is loaded as a picture, so scripts inside it do not run and files it links to are not fetched. Fonts that are not embedded in the file may be replaced by a default font.",
+    ],
+    example:
+      "A logo SVG with a 3:1 shape drawn at 1024 pixels wide becomes a 1,024 × 341 pixel JPG on a white background.",
+    faqs: [
+      {
+        q: "What size should I choose?",
+        a: "Choose the largest size you will need. Screens and web pages are usually fine with 512 or 1024 pixels, and print or high-density displays need 2048 or 4096. An SVG can be redrawn at any size, so you can convert again.",
+      },
+      {
+        q: "What if my SVG has a transparent background?",
+        a: "It is placed on the background you choose. Use SVG to PNG to keep the transparency.",
+      },
+      {
+        q: "Why does my text look different?",
+        a: "If the SVG uses a font that is not embedded in the file, your browser replaces it. Convert the text to outlines in your drawing program first to keep it exact.",
+      },
+      {
+        q: "Why can't I choose an exact height?",
+        a: "The height follows the shape of the drawing so nothing is stretched. Choose the width you need and the height is worked out.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "tiff-to-jpg": {
+    howItWorks: [
+      "Browsers cannot open TIFF files, so a small decoder is loaded the first time you convert one. Each TIFF is decoded and saved as a JPG at the quality you choose.",
+      "TIFF files often come from scanners and cameras and can be very large. The JPG is usually many times smaller, and 90% quality looks the same for most pictures.",
+      "Only the first page of a multi-page TIFF is converted. JPG cannot hold transparency, so transparent areas are filled with white.",
+    ],
+    example:
+      "A 24 MB scanned page saved as a TIFF at 2,480 × 3,508 pixels becomes a JPG of the same size, typically 1 to 2 MB at 90% quality.",
+    faqs: [
+      {
+        q: "What about multi-page TIFFs?",
+        a: "Only the first page is converted. Split the pages first if you need each one.",
+      },
+      {
+        q: "Why won't my TIFF convert?",
+        a: "A few unusual TIFF types, such as some 16-bit, CMYK or heavily compressed files, are not supported by the decoder. Re-save it as a standard TIFF or PNG in an image editor.",
+      },
+      {
+        q: "Can I convert many images at once?",
+        a: "Yes. Add as many as you like, convert them together, then save them one by one or all in a single ZIP.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. The conversion runs in your browser tab and the result is saved straight from it, so the files never leave your device.",
+      },
+    ],
+  },
+  "merge-images": {
+    howItWorks: [
+      "Add the images in the order you want them, then choose a layout. Top to bottom scales every image to the same width and stacks them. Left to right scales every image to the same height and lines them up in a row. Nothing is cropped or stretched.",
+      "A grid fits each image inside equal cells, centred, with the columns you choose. Spacing adds a gap between images, and the background fills the gaps and any space around images in the grid.",
+      "Match the largest image to keep the most detail, or the smallest to keep the result small. If the merged picture would be too large for a browser to draw, it is scaled down to fit and the tool says so.",
+    ],
+    example:
+      "Three 1,200 × 800 pixel photos stacked top to bottom with 20 pixels of spacing make one 1,200 × 2,440 pixel image.",
+    faqs: [
+      {
+        q: "Can I change the order?",
+        a: "Yes. Use the up and down buttons beside each image.",
+      },
+      {
+        q: "Is there a size limit?",
+        a: "Browsers can draw an image up to about 16,000 pixels on a side or 100 million pixels in all. Beyond that the result is scaled down automatically.",
+      },
+      {
+        q: "How do I keep a transparent background?",
+        a: "Choose Transparent as the background and save as PNG or WebP. JPG cannot hold transparency, so the format switches to PNG.",
+      },
+      {
+        q: "Are my images uploaded?",
+        a: "No. They are merged in your browser tab and saved straight from it.",
+      },
+    ],
+  },
 };

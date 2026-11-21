@@ -1564,6 +1564,203 @@ export const TOOLS: Tool[] = [
     tags: ["pdf to jpg", "pdf to png", "pdf to image", "convert pdf", "pdf"],
   },
   {
+    slug: "pdf-to-text",
+    name: "PDF to Text Converter",
+    domain: "files",
+    category: "Convert PDF",
+    tagline: "Pull the text out of a PDF as a plain .txt file.",
+    description:
+      "Read the text from every page of a PDF, with paragraphs rebuilt and hyphenated line ends joined, then copy it or save it as a .txt file.",
+    tags: ["pdf to text", "pdf to txt", "extract text from pdf", "convert pdf", "pdf"],
+    popular: true,
+  },
+  {
+    slug: "pdf-to-csv",
+    name: "PDF to CSV Converter",
+    domain: "files",
+    category: "Convert PDF",
+    tagline: "Turn the tables in a PDF into a CSV file.",
+    description:
+      "Rebuild rows and columns from the text in a PDF and save them as CSV, with your choice of separator and a preview to check the columns.",
+    tags: ["pdf to csv", "pdf table to csv", "extract table from pdf", "convert pdf", "pdf"],
+  },
+  {
+    slug: "pdf-to-excel",
+    name: "PDF to Excel Converter",
+    domain: "files",
+    category: "Convert PDF",
+    tagline: "Turn the tables in a PDF into an Excel workbook.",
+    description:
+      "Rebuild rows and columns from a PDF's text and save them as an .xlsx workbook, on one sheet or one per page, with numbers stored as numbers.",
+    tags: ["pdf to excel", "pdf to xlsx", "pdf table to excel", "convert pdf", "pdf"],
+    popular: true,
+  },
+  {
+    slug: "pdf-to-word",
+    name: "PDF to Word Converter",
+    domain: "files",
+    category: "Convert PDF",
+    tagline: "Turn a PDF into an editable Word .docx document.",
+    description:
+      "Rebuild a PDF's text as a Word document with paragraphs and headings, so you can edit and reuse it. Layout, images and tables are not carried over.",
+    tags: ["pdf to word", "pdf to docx", "pdf to doc", "convert pdf", "pdf"],
+    popular: true,
+  },
+  {
+    slug: "pdf-to-epub",
+    name: "PDF to EPUB Converter",
+    domain: "files",
+    category: "Convert PDF",
+    tagline: "Turn a PDF into an EPUB e-book that fits any screen.",
+    description:
+      "Rebuild a PDF's text as a reflowable EPUB with chapters and a contents page, for e-readers and phones. Images and page layout are left out.",
+    tags: ["pdf to epub", "pdf to ebook", "convert pdf", "epub", "pdf"],
+  },
+  {
+    slug: "jpg-to-png",
+    name: "JPG to PNG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn JPG photos into lossless PNG images.",
+    description:
+      "Convert one or many JPG files to PNG in your browser. The PNG keeps every pixel of the JPG as it is, and nothing is uploaded.",
+    tags: ["jpg to png", "jpeg to png", "convert jpg", "image converter", "png"],
+    popular: true,
+  },
+  {
+    slug: "png-to-jpg",
+    name: "PNG to JPG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn PNG images into smaller JPG files.",
+    description:
+      "Convert PNG files to JPG with a quality slider, and see how much smaller each one gets. Transparent areas turn white. Nothing is uploaded.",
+    tags: ["png to jpg", "png to jpeg", "convert png", "image converter", "jpg"],
+    popular: true,
+  },
+  {
+    slug: "webp-to-png",
+    name: "WebP to PNG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn WebP images into PNG files that open everywhere.",
+    description:
+      "Convert WebP files to PNG for editors and apps that don't read WebP. Transparency is kept, and nothing is uploaded.",
+    tags: ["webp to png", "convert webp", "image converter", "png"],
+  },
+  {
+    slug: "webp-to-jpg",
+    name: "WebP to JPG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn WebP images into JPG files that open everywhere.",
+    description:
+      "Convert WebP files to JPG with a quality slider, for apps and sites that don't accept WebP. Transparent areas turn white. Nothing is uploaded.",
+    tags: ["webp to jpg", "webp to jpeg", "convert webp", "image converter", "jpg"],
+  },
+  {
+    slug: "png-to-webp",
+    name: "PNG to WebP Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Make PNG images much smaller as WebP.",
+    description:
+      "Convert PNG files to WebP with a quality slider to cut file size for faster pages. Transparency is kept, and nothing is uploaded.",
+    tags: ["png to webp", "convert png", "image converter", "webp", "page speed"],
+  },
+  {
+    slug: "jpg-to-webp",
+    name: "JPG to WebP Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Make JPG photos smaller as WebP.",
+    description:
+      "Convert JPG files to WebP with a quality slider to cut file size for faster pages, and see the saving for each file. Nothing is uploaded.",
+    tags: ["jpg to webp", "jpeg to webp", "convert jpg", "image converter", "webp", "page speed"],
+  },
+  {
+    slug: "heic-to-jpg",
+    name: "HEIC to JPG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn iPhone HEIC photos into JPG files that open anywhere.",
+    description:
+      "Convert HEIC and HEIF photos from an iPhone or iPad to JPG, one or many at a time, with the right way up kept. Nothing is uploaded.",
+    tags: ["heic to jpg", "heic to jpeg", "iphone photo to jpg", "convert heic", "heif"],
+    popular: true,
+  },
+  {
+    slug: "heic-to-png",
+    name: "HEIC to PNG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn iPhone HEIC photos into lossless PNG images.",
+    description:
+      "Convert HEIC and HEIF photos to PNG, one or many at a time. PNG is lossless but larger than JPG. Nothing is uploaded.",
+    tags: ["heic to png", "iphone photo to png", "convert heic", "heif"],
+  },
+  {
+    slug: "avif-to-jpg",
+    name: "AVIF to JPG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn AVIF images into JPG files that open everywhere.",
+    description:
+      "Convert AVIF files to JPG with a quality slider, for editors, apps and upload forms that don't accept AVIF. Nothing is uploaded.",
+    tags: ["avif to jpg", "avif to jpeg", "convert avif", "image converter", "jpg"],
+  },
+  {
+    slug: "gif-to-jpg",
+    name: "GIF to JPG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Save a GIF as a JPG still image.",
+    description:
+      "Convert GIF files to JPG with a quality slider. An animated GIF becomes a still of its first frame. Nothing is uploaded.",
+    tags: ["gif to jpg", "gif to jpeg", "convert gif", "image converter", "jpg"],
+  },
+  {
+    slug: "svg-to-png",
+    name: "SVG to PNG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn SVG graphics into PNG images at the size you choose.",
+    description:
+      "Draw SVG files as PNG images from 256 to 4096 pixels wide, with transparency kept, for apps and uploads that don't accept SVG. Nothing is uploaded.",
+    tags: ["svg to png", "convert svg", "svg to image", "image converter", "png"],
+    popular: true,
+  },
+  {
+    slug: "svg-to-jpg",
+    name: "SVG to JPG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn SVG graphics into JPG images at the size you choose.",
+    description:
+      "Draw SVG files as JPG images from 256 to 4096 pixels wide, on a white or black background. Nothing is uploaded.",
+    tags: ["svg to jpg", "svg to jpeg", "convert svg", "svg to image", "jpg"],
+  },
+  {
+    slug: "tiff-to-jpg",
+    name: "TIFF to JPG Converter",
+    domain: "files",
+    category: "Convert Images",
+    tagline: "Turn TIFF scans and images into JPG files.",
+    description:
+      "Convert TIFF and TIF files to JPG with a quality slider, one or many at a time, so they open on any device. Nothing is uploaded.",
+    tags: ["tiff to jpg", "tif to jpg", "convert tiff", "scan to jpg", "image converter"],
+  },
+  {
+    slug: "merge-images",
+    name: "Merge Images",
+    domain: "files",
+    category: "Edit Images",
+    tagline: "Combine several images into one, stacked or in a grid.",
+    description:
+      "Join images top to bottom, left to right or in a grid, with spacing and a background colour, and save the result as PNG, JPG or WebP.",
+    tags: ["merge images", "combine images", "join images", "stitch images", "image collage"],
+  },
+  {
     slug: "zip-file-creator",
     name: "Zip File Creator",
     domain: "files",
