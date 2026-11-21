@@ -4,8 +4,8 @@ import * as React from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CalcLayout, CopyButton, FieldGrid, ResultHero, SelectField, TextField, Verdict, downloadBlob, downloadText } from "./ui";
-import { FileDropZone } from "./file-drop";
-import { baseName, openWithPdfjs, pdfError, readBytes, useSinglePdf } from "./pdf";
+import { FileDropZone, MAX_TOTAL_BYTES } from "./file-drop";
+import { baseName, openWithPdfjs, pdfError, readBytes, tooBig } from "./pdf";
 import { bytesToBlob, fmtBytes } from "@/lib/archive";
 import { inferCell, sheetFileName } from "@/lib/spreadsheet";
 import {
@@ -38,23 +38,39 @@ const plural = (n: number, word: string) => `${n.toLocaleString("en-US")} ${word
 
 /** Open a PDF and read its text, page by page, as soon as one is chosen. */
 function usePdfText() {
-  const { file, pageCount, error, setError, open } = useSinglePdf();
+  // pdf.js reads the page count and the text in one pass, so pdf-lib is never downloaded for these tools.
+  const [file, setFile] = React.useState<File | null>(null);
+  const [pageCount, setPageCount] = React.useState(0);
+  const [error, setError] = React.useState("");
   const [pages, setPages] = React.useState<Line[][] | null>(null);
   const [progress, setProgress] = React.useState("");
   const [readError, setReadError] = React.useState("");
 
+  const open = async (files: File[]) => {
+    const f = files[0];
+    setFile(null);
+    setPageCount(0);
+    setError(tooBig(f.size));
+    if (f.size > MAX_TOTAL_BYTES) return null;
+    setFile(f);
+    return f;
+  };
+
   React.useEffect(() => {
     setPages(null);
     setReadError("");
+    setPageCount(0);
     if (!file) return;
-    if (pageCount > MAX_TEXT_PAGES) {
-      setReadError(`This PDF has ${pageCount.toLocaleString("en-US")} pages. Split it first: these tools read up to ${MAX_TEXT_PAGES} pages at a time.`);
-      return;
-    }
     let cancelled = false;
     (async () => {
       const { doc, close } = await openWithPdfjs(await readBytes(file));
       try {
+        if (cancelled) return;
+        setPageCount(doc.numPages);
+        if (doc.numPages > MAX_TEXT_PAGES) {
+          setReadError(`This PDF has ${doc.numPages.toLocaleString("en-US")} pages. Split it first: these tools read up to ${MAX_TEXT_PAGES} pages at a time.`);
+          return;
+        }
         const out: Line[][] = [];
         for (let n = 1; n <= doc.numPages; n++) {
           if (cancelled) return;
@@ -88,7 +104,7 @@ function usePdfText() {
     return () => {
       cancelled = true;
     };
-  }, [file, pageCount]);
+  }, [file]);
 
   return { file, pageCount, pages, progress, error: error || readError, setError, open };
 }

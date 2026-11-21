@@ -1,5 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { MAX_SIDE, placePictures, scalePlacement, shrinkFactor } from "@/lib/merge-layout";
+import { MAX_SIDE, SAFE_PIXELS } from "@/lib/canvas-limits";
+import { placePictures, scalePlacement, shrinkFactor } from "@/lib/merge-layout";
 
 const sizes = [{ w: 400, h: 300 }, { w: 200, h: 100 }];
 
@@ -55,5 +56,12 @@ describe("canvas limits", () => {
     const p = scalePlacement({ width: 4000, height: 40000, rects: [{ x: 0, y: 20000, w: 4000, h: 20000 }] }, f);
     expect(Math.max(p.width, p.height)).toBeLessThanOrEqual(MAX_SIDE);
     expect(p.width * p.height).toBeLessThanOrEqual(100_000_000);
+  });
+
+  test("a lower pixel cap shrinks a result that the default cap leaves alone", () => {
+    expect(shrinkFactor(8000, 6000)).toBe(1);
+    const f = shrinkFactor(8000, 6000, SAFE_PIXELS);
+    expect(f).toBeLessThan(1);
+    expect(Math.round(8000 * f) * Math.round(6000 * f)).toBeLessThan(SAFE_PIXELS * 1.001);
   });
 });
