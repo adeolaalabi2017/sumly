@@ -168,6 +168,30 @@ const wordCount = (text: string) => (text.match(/\S+/g) ?? []).length;
 /* PDF to Text                                                         */
 /* ================================================================== */
 
+// Each result below is its own component so useMemo can keep the slow work (rebuilding text, rows and
+// paragraphs for every page) from rerunning when only an option or a field changes. A render prop can't hold hooks.
+
+function TextResult({ pages, stem, markers }: { pages: Line[][]; stem: string; markers: boolean }) {
+  const text = React.useMemo(() => pagesToText(pages, markers), [pages, markers]);
+  const bytes = React.useMemo(() => new Blob([text]).size, [text]);
+  const shown = text.length > 20000 ? `${text.slice(0, 20000)}\n\n…` : text;
+  return (
+    <div className="space-y-4">
+      <ResultHero label="Words" value={wordCount(text).toLocaleString("en-US")} sub={`${plural(pages.length, "page")} · ${fmtBytes(bytes)} as text`} />
+      <div role="region" aria-label="Extracted text" className="max-h-72 overflow-auto rounded-md bg-muted p-4 text-sm leading-relaxed">
+        <pre className="whitespace-pre-wrap break-words font-sans">{shown}</pre>
+      </div>
+      {text.length > 20000 && <p className="text-xs text-muted-foreground">The preview shows the first 20,000 characters. Copy and download have everything.</p>}
+      <div className="flex gap-2">
+        <CopyButton text={text} />
+        <Button type="button" className="h-10 flex-1 gap-2 sm:h-8" onClick={() => downloadText(`${stem}.txt`, text)}>
+          <Download className="h-4 w-4" aria-hidden /> Download {stem}.txt
+        </Button>
+      </div>
+    </div>
+  );
+}
+
 export function PdfToText() {
   const [markers, setMarkers] = React.useState("none");
   return (
@@ -185,25 +209,7 @@ export function PdfToText() {
         />
       }
     >
-      {({ pages, stem }) => {
-        const text = pagesToText(pages, markers === "marks");
-        const shown = text.length > 20000 ? `${text.slice(0, 20000)}\n\n…` : text;
-        return (
-          <div className="space-y-4">
-            <ResultHero label="Words" value={wordCount(text).toLocaleString("en-US")} sub={`${plural(pages.length, "page")} · ${fmtBytes(new Blob([text]).size)} as text`} />
-            <div role="region" aria-label="Extracted text" className="max-h-72 overflow-auto rounded-md bg-muted p-4 text-sm leading-relaxed">
-              <pre className="whitespace-pre-wrap break-words font-sans">{shown}</pre>
-            </div>
-            {text.length > 20000 && <p className="text-xs text-muted-foreground">The preview shows the first 20,000 characters. Copy and download have everything.</p>}
-            <div className="flex gap-2">
-              <CopyButton text={text} />
-              <Button type="button" className="h-10 flex-1 gap-2 sm:h-8" onClick={() => downloadText(`${stem}.txt`, text)}>
-                <Download className="h-4 w-4" aria-hidden /> Download {stem}.txt
-              </Button>
-            </div>
-          </div>
-        );
-      }}
+      {({ pages, stem }) => <TextResult pages={pages} stem={stem} markers={markers === "marks"} />}
     </PdfConvert>
   );
 }
@@ -221,6 +227,22 @@ const DELIMS = [
   { value: "\t", label: "Tab" },
 ];
 
+function CsvResult({ pages, stem, delimiter }: { pages: Line[][]; stem: string; delimiter: string }) {
+  const rows = React.useMemo(() => allRows(pages), [pages]);
+  const csv = React.useMemo(() => rowsToCsv(rows, delimiter), [rows, delimiter]);
+  const cols = Math.max(0, ...rows.map((r) => r.length));
+  return (
+    <div className="space-y-4">
+      <ResultHero label="Rows" value={rows.length.toLocaleString("en-US")} sub={`${plural(cols, "column")} · from ${plural(pages.length, "page")}`} />
+      <TablePreview rows={rows} />
+      <Button type="button" className="w-full gap-2" onClick={() => downloadBlob(`${stem}.csv`, new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" }))}>
+        <Download className="h-4 w-4" aria-hidden /> Download {stem}.csv
+      </Button>
+      <Verdict tone="neutral">Every line of text becomes a row, and text that starts at the same left edge on several lines becomes a column. Tables with merged cells or wrapped text may need tidying.</Verdict>
+    </div>
+  );
+}
+
 export function PdfToCsv() {
   const [delimiter, setDelimiter] = React.useState(",");
   return (
@@ -228,21 +250,7 @@ export function PdfToCsv() {
       verb="turn its tables into CSV"
       options={<SelectField label="Separator" value={delimiter} onChange={setDelimiter} options={DELIMS} />}
     >
-      {({ pages, stem }) => {
-        const rows = allRows(pages);
-        const cols = Math.max(0, ...rows.map((r) => r.length));
-        const csv = rowsToCsv(rows, delimiter);
-        return (
-          <div className="space-y-4">
-            <ResultHero label="Rows" value={rows.length.toLocaleString("en-US")} sub={`${plural(cols, "column")} · from ${plural(pages.length, "page")}`} />
-            <TablePreview rows={rows} />
-            <Button type="button" className="w-full gap-2" onClick={() => downloadBlob(`${stem}.csv`, new Blob([`﻿${csv}`], { type: "text/csv;charset=utf-8" }))}>
-              <Download className="h-4 w-4" aria-hidden /> Download {stem}.csv
-            </Button>
-            <Verdict tone="neutral">Every line of text becomes a row, and text that starts at the same left edge on several lines becomes a column. Tables with merged cells or wrapped text may need tidying.</Verdict>
-          </div>
-        );
-      }}
+      {({ pages, stem }) => <CsvResult pages={pages} stem={stem} delimiter={delimiter} />}
     </PdfConvert>
   );
 }
@@ -251,12 +259,60 @@ export function PdfToCsv() {
 /* PDF to Excel                                                        */
 /* ================================================================== */
 
+function ExcelResult({ pages, stem, layout, numbers }: { pages: Line[][]; stem: string; layout: string; numbers: string }) {
+  const rows = React.useMemo(() => allRows(pages), [pages]);
+  // "Downloaded" belongs to one file and one set of options; it is shown only while both still match.
+  const signature = `${stem}|${layout}|${numbers}`;
+  const [made, setMade] = React.useState<{ signature: string; name: string } | null>(null);
+  const [error, setError] = React.useState("");
+  const cols = Math.max(0, ...rows.map((r) => r.length));
+  const fileName = `${sheetFileName(stem)}.xlsx`;
+  const downloaded = made?.signature === signature ? made.name : "";
+
+  const create = async () => {
+    setError("");
+    try {
+      const XLSX = await import("xlsx");
+      const book = XLSX.utils.book_new();
+      const sheets = layout === "one" ? [rows] : pages.map((lines) => linesToRows(lines));
+      sheets.forEach((sheetRows, i) => {
+        if (sheetRows.length === 0) return;
+        // Strings stay strings: text starting with "=" is never stored as a live formula.
+        const ws = XLSX.utils.aoa_to_sheet(sheetRows.map((r) => r.map((v) => inferCell(v, numbers === "text"))));
+        const width = Math.max(0, ...sheetRows.map((r) => r.length));
+        ws["!cols"] = Array.from({ length: width }, (_, c) => ({
+          wch: Math.min(50, Math.max(8, ...sheetRows.slice(0, 500).map((r) => (r[c] ?? "").length + 1))),
+        }));
+        XLSX.utils.book_append_sheet(book, ws, layout === "one" ? "PDF" : `Page ${i + 1}`);
+      });
+      const out: ArrayBuffer = XLSX.write(book, { type: "array", bookType: "xlsx", compression: true });
+      downloadBlob(fileName, new Blob([out], { type: XLSX_MIME }));
+      setMade({ signature, name: fileName });
+    } catch {
+      setError("The workbook couldn't be created from this PDF.");
+    }
+  };
+
+  return (
+    <div className="space-y-4">
+      <ResultHero
+        label={layout === "one" ? "Rows" : "Sheets"}
+        value={(layout === "one" ? rows.length : pages.filter((p) => p.length).length).toLocaleString("en-US")}
+        sub={downloaded ? `${downloaded} downloaded` : `${plural(cols, "column")} · from ${plural(pages.length, "page")}`}
+      />
+      <TablePreview rows={rows} />
+      {error && <Verdict tone="bad">{error}</Verdict>}
+      <Button type="button" className="w-full gap-2" onClick={create}>
+        <Download className="h-4 w-4" aria-hidden /> Create {fileName}
+      </Button>
+      <Verdict tone="neutral">Every line of text becomes a row, and text that starts at the same left edge on several lines becomes a column. Check the columns before relying on the numbers.</Verdict>
+    </div>
+  );
+}
+
 export function PdfToExcel() {
   const [layout, setLayout] = React.useState("one");
   const [numbers, setNumbers] = React.useState("detect");
-  const [made, setMade] = React.useState("");
-  const [error, setError] = React.useState("");
-
   return (
     <PdfConvert
       verb="turn its tables into an Excel workbook"
@@ -265,10 +321,7 @@ export function PdfToExcel() {
           <SelectField
             label="Sheets"
             value={layout}
-            onChange={(v) => {
-              setLayout(v);
-              setMade("");
-            }}
+            onChange={setLayout}
             options={[
               { value: "one", label: "One sheet for the whole PDF" },
               { value: "per-page", label: "One sheet per page" },
@@ -277,10 +330,7 @@ export function PdfToExcel() {
           <SelectField
             label="Numbers"
             value={numbers}
-            onChange={(v) => {
-              setNumbers(v);
-              setMade("");
-            }}
+            onChange={setNumbers}
             options={[
               { value: "detect", label: "Store as numbers" },
               { value: "text", label: "Keep everything as text" },
@@ -289,49 +339,7 @@ export function PdfToExcel() {
         </FieldGrid>
       }
     >
-      {({ pages, stem }) => {
-        const rows = allRows(pages);
-        const cols = Math.max(0, ...rows.map((r) => r.length));
-        const fileName = `${sheetFileName(stem)}.xlsx`;
-        const create = async () => {
-          setError("");
-          try {
-            const XLSX = await import("xlsx");
-            const book = XLSX.utils.book_new();
-            const sheets = layout === "one" ? [rows] : pages.map((lines) => linesToRows(lines));
-            sheets.forEach((sheetRows, i) => {
-              if (sheetRows.length === 0) return;
-              // Strings stay strings: text starting with "=" is never stored as a live formula.
-              const ws = XLSX.utils.aoa_to_sheet(sheetRows.map((r) => r.map((v) => inferCell(v, numbers === "text"))));
-              const width = Math.max(0, ...sheetRows.map((r) => r.length));
-              ws["!cols"] = Array.from({ length: width }, (_, c) => ({
-                wch: Math.min(50, Math.max(8, ...sheetRows.slice(0, 500).map((r) => (r[c] ?? "").length + 1))),
-              }));
-              XLSX.utils.book_append_sheet(book, ws, layout === "one" ? "PDF" : `Page ${i + 1}`);
-            });
-            const out: ArrayBuffer = XLSX.write(book, { type: "array", bookType: "xlsx", compression: true });
-            downloadBlob(fileName, new Blob([out], { type: XLSX_MIME }));
-            setMade(fileName);
-          } catch {
-            setError("The workbook couldn't be created from this PDF.");
-          }
-        };
-        return (
-          <div className="space-y-4">
-            <ResultHero
-              label={layout === "one" ? "Rows" : "Sheets"}
-              value={(layout === "one" ? rows.length : pages.filter((p) => p.length).length).toLocaleString("en-US")}
-              sub={made ? `${made} downloaded` : `${plural(cols, "column")} · from ${plural(pages.length, "page")}`}
-            />
-            <TablePreview rows={rows} />
-            {error && <Verdict tone="bad">{error}</Verdict>}
-            <Button type="button" className="w-full gap-2" onClick={create}>
-              <Download className="h-4 w-4" aria-hidden /> Create {fileName}
-            </Button>
-            <Verdict tone="neutral">Every line of text becomes a row, and text that starts at the same left edge on several lines becomes a column. Check the columns before relying on the numbers.</Verdict>
-          </div>
-        );
-      }}
+      {({ pages, stem }) => <ExcelResult pages={pages} stem={stem} layout={layout} numbers={numbers} />}
     </PdfConvert>
   );
 }
@@ -357,34 +365,66 @@ function BlockPreview({ blocks }: { blocks: Block[] }) {
   );
 }
 
-export function PdfToWord() {
+function WordResult({ pages, stem }: { pages: Line[][]; stem: string }) {
+  const blocks = React.useMemo(() => linesToBlocks(pages), [pages]);
+  const headings = blocks.filter((b) => b.kind === "heading").length;
   return (
-    <PdfConvert verb="turn it into a Word document">
-      {({ pages, stem }) => {
-        const blocks = linesToBlocks(pages);
-        const headings = blocks.filter((b) => b.kind === "heading").length;
-        return (
-          <div className="space-y-4">
-            <ResultHero
-              label="Paragraphs"
-              value={blocks.length.toLocaleString("en-US")}
-              sub={`${plural(headings, "heading")} · ${plural(wordCount(blocks.map((b) => b.text).join(" ")), "word")} · from ${plural(pages.length, "page")}`}
-            />
-            <BlockPreview blocks={blocks} />
-            <Button type="button" className="w-full gap-2" onClick={() => downloadBlob(`${stem}.docx`, bytesToBlob(buildDocx(blocks, stem), DOCX_MIME))}>
-              <Download className="h-4 w-4" aria-hidden /> Download {stem}.docx
-            </Button>
-            <Verdict tone="neutral">The document keeps the text, paragraphs and headings. Page layout, columns, images and tables are not carried over, so expect to tidy the formatting.</Verdict>
-          </div>
-        );
-      }}
-    </PdfConvert>
+    <div className="space-y-4">
+      <ResultHero
+        label="Paragraphs"
+        value={blocks.length.toLocaleString("en-US")}
+        sub={`${plural(headings, "heading")} · ${plural(wordCount(blocks.map((b) => b.text).join(" ")), "word")} · from ${plural(pages.length, "page")}`}
+      />
+      <BlockPreview blocks={blocks} />
+      <Button type="button" className="w-full gap-2" onClick={() => downloadBlob(`${stem}.docx`, bytesToBlob(buildDocx(blocks, stem), DOCX_MIME))}>
+        <Download className="h-4 w-4" aria-hidden /> Download {stem}.docx
+      </Button>
+      <Verdict tone="neutral">The document keeps the text, paragraphs and headings. Page layout, columns, images and tables are not carried over, so expect to tidy the formatting.</Verdict>
+    </div>
   );
+}
+
+export function PdfToWord() {
+  return <PdfConvert verb="turn it into a Word document">{({ pages, stem }) => <WordResult pages={pages} stem={stem} />}</PdfConvert>;
 }
 
 /* ================================================================== */
 /* PDF to EPUB                                                         */
 /* ================================================================== */
+
+function EpubResult({ pages, stem, title, perChapter }: { pages: Line[][]; stem: string; title: string; perChapter: number }) {
+  // The slow part, rebuilding paragraphs, depends only on the pages and the chapter length, not on the title typed.
+  const groups = React.useMemo(() => {
+    const out: { start: number; end: number; blocks: Block[] }[] = [];
+    for (let start = 0; start < pages.length; start += perChapter) {
+      const slice = pages.slice(start, start + perChapter);
+      const blocks = linesToBlocks(slice);
+      if (blocks.length > 0) out.push({ start, end: start + slice.length, blocks });
+    }
+    return out;
+  }, [pages, perChapter]);
+  const bookTitle = title.trim() || stem;
+  const chapters: EpubChapter[] = groups.map((g) => ({
+    title: perChapter >= pages.length ? bookTitle : g.start + 1 === g.end ? `Page ${g.end}` : `Pages ${g.start + 1}–${g.end}`,
+    blocks: g.blocks,
+  }));
+  const allBlocks = React.useMemo(() => groups.flatMap((g) => g.blocks), [groups]);
+  const words = React.useMemo(() => wordCount(allBlocks.map((b) => b.text).join(" ")), [allBlocks]);
+  const make = () => {
+    const bytes = buildEpub(chapters, bookTitle, crypto.randomUUID(), new Date());
+    downloadBlob(`${sheetFileName(bookTitle)}.epub`, bytesToBlob(bytes, "application/epub+zip"));
+  };
+  return (
+    <div className="space-y-4">
+      <ResultHero label="Chapters" value={chapters.length.toLocaleString("en-US")} sub={`${plural(words, "word")} · from ${plural(pages.length, "page")}`} />
+      <BlockPreview blocks={allBlocks} />
+      <Button type="button" className="w-full gap-2" onClick={make}>
+        <Download className="h-4 w-4" aria-hidden /> Download {sheetFileName(bookTitle)}.epub
+      </Button>
+      <Verdict tone="neutral">The e-book is reflowable text with headings, so it resizes on any reader. Images, tables and the original page layout are left out.</Verdict>
+    </div>
+  );
+}
 
 export function PdfToEpub() {
   const [title, setTitle] = React.useState("");
@@ -410,32 +450,7 @@ export function PdfToEpub() {
         </FieldGrid>
       }
     >
-      {({ pages, stem }) => {
-        const size = Number(perChapter);
-        const bookTitle = title.trim() || stem;
-        const chapters: EpubChapter[] = [];
-        for (let start = 0; start < pages.length; start += size) {
-          const slice = pages.slice(start, start + size);
-          const blocks = linesToBlocks(slice);
-          if (blocks.length === 0) continue;
-          const end = start + slice.length;
-          chapters.push({ title: size >= pages.length ? bookTitle : start + 1 === end ? `Page ${end}` : `Pages ${start + 1}–${end}`, blocks });
-        }
-        const make = () => {
-          const bytes = buildEpub(chapters, bookTitle, crypto.randomUUID(), new Date());
-          downloadBlob(`${sheetFileName(bookTitle)}.epub`, bytesToBlob(bytes, "application/epub+zip"));
-        };
-        return (
-          <div className="space-y-4">
-            <ResultHero label="Chapters" value={chapters.length.toLocaleString("en-US")} sub={`${plural(wordCount(chapters.flatMap((c) => c.blocks.map((b) => b.text)).join(" ")), "word")} · from ${plural(pages.length, "page")}`} />
-            <BlockPreview blocks={chapters.flatMap((c) => c.blocks)} />
-            <Button type="button" className="w-full gap-2" onClick={make}>
-              <Download className="h-4 w-4" aria-hidden /> Download {sheetFileName(bookTitle)}.epub
-            </Button>
-            <Verdict tone="neutral">The e-book is reflowable text with headings, so it resizes on any reader. Images, tables and the original page layout are left out.</Verdict>
-          </div>
-        );
-      }}
+      {({ pages, stem }) => <EpubResult pages={pages} stem={stem} title={title} perChapter={Number(perChapter)} />}
     </PdfConvert>
   );
 }
