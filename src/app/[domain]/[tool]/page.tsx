@@ -27,7 +27,7 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${t.name} — Free Online Tool`;
+  const title = t.metaTitle ?? `${t.name} — Free Online Tool`;
   const description = t.description || t.tagline;
   const canonicalUrl = `/${t.domain}/${t.slug}`;
   const ogImage = { url: ogImagePath(t), ...OG_SIZE, type: "image/png", alt: ogAlt(t) };
