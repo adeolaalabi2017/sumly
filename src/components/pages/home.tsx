@@ -17,7 +17,7 @@ const SAMPLES = [
   {
     href: "/developer/json-formatter",
     name: "JSON Formatter",
-    input: `{"name":"toolz","tools":${TOOLS.length}}`,
+    input: `{"name":"sumly","tools":${TOOLS.length}}`,
     output: "Valid JSON, 4 lines",
   },
   {
@@ -41,7 +41,8 @@ export function HomePage() {
       <section className="pb-14 pt-12 sm:pb-16 sm:pt-20">
         <h1 className="max-w-5xl text-display-xl">Bring what you&apos;ve got. Leave with what you need.</h1>
         <p className="mt-8 text-lg text-muted-foreground">
-          Search {TOOLS.length} tools across {DOMAINS.length} domains. Free, with no sign-up.
+          Whatever you&apos;ve got, a number to work out, a file to convert or a draft to check, you leave with
+          what you need. Search {TOOLS.length} tools across {DOMAINS.length} domains. Free, with no sign-up.
         </p>
         <div className="mt-2 flex max-w-4xl flex-wrap gap-2">
           <button
