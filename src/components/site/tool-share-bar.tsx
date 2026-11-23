@@ -22,6 +22,10 @@ export function ToolShareBar({
   const [copied, setCopied] = React.useState(false);
   const inToolPage = useInToolPage();
 
+  // The tool page now has one Share menu in its shared toolbar (ToolShareMenu); a second
+  // "Share Scenario" button here would duplicate it.
+  if (inToolPage) return null;
+
   const handleShare = async () => {
     if (typeof window === "undefined") return;
     try {
