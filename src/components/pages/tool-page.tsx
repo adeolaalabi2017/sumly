@@ -19,6 +19,7 @@ import {
 import { RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookmarkButton } from "@/components/site/bookmarks";
+import { ToolShareMenu } from "@/components/site/tool-share-menu";
 import { useCurrency } from "@/components/site/currency";
 import { ToolToolbarContext } from "@/components/site/tool-toolbar";
 import type { Tool, ToolContent } from "@/lib/registry/types";
@@ -102,6 +103,7 @@ export function ToolPage({
             <RotateCcw className="h-3.5 w-3.5" aria-hidden />
             Reset
           </Button>
+          <ToolShareMenu toolName={tool.name} />
           <div ref={setToolbar} className="contents [&>*]:shrink-0" />
         </div>
       </header>
