@@ -853,11 +853,12 @@ export const TOOLS: Tool[] = [
   {
     slug: "unit-converter",
     name: "Unit Converter",
+    metaTitle: "Unit Converter: Length, Weight, Volume & Data",
     domain: "everyday",
     category: "Conversions",
     tagline: "Length, weight, volume and data — one value, every unit at once.",
     description:
-      "Convert between metric and US units across four families, seeing your value expressed in every unit simultaneously instead of one guess at a time.",
+      "Free unit converter for length, weight, volume and data. Convert metric and US units like cm to inches or kg to lbs, with every unit shown at once.",
     tags: ["unit converter", "measurement", "metric", "everyday", "conversion"],
     popular: true,
   },
@@ -1423,11 +1424,12 @@ export const TOOLS: Tool[] = [
   {
     slug: "ratio-calculator",
     name: "Ratio Calculator",
+    metaTitle: "Ratio Calculator: Simplify Ratios & Solve Proportions",
     domain: "math",
     category: "Arithmetic",
     tagline: "Solve a proportion for the missing value, or simplify a ratio.",
     description:
-      "Find the missing number in A : B = C : D, scale a recipe or drawing, or reduce any ratio such as 1920 : 1080 to its simplest form.",
+      "Free ratio calculator: simplify a ratio like 1920 : 1080 to 16 : 9, or find the missing value in A : B = C : D. Scale recipes and drawings with instant answers.",
     tags: ["ratio calculator", "proportion", "simplify ratio", "scale", "math"],
   },
   {

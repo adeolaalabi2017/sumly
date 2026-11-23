@@ -16,6 +16,7 @@
 # The service worker must never be served stale, or fixes to it can't ship.
 /sw.js
   Cache-Control: no-cache
+  Content-Type: text/javascript; charset=utf-8
 
 # Hashed build output never changes.
 /_next/static/*
@@ -28,3 +29,59 @@
 # Per-tool Open Graph images are also emitted without a file extension.
 /:domain/:tool/opengraph-image
   Content-Type: image/png
+
+# Cloudflare serves static HTML as "text/html" with no charset. The pages declare UTF-8 in a
+# <meta> tag, but crawlers and SEO scanners read the HTTP header, so set it here. One rule
+# cannot cover every route (a wildcard would also relabel JS, CSS and images), so the page
+# shapes are listed: the home page, the domain hubs and legal pages, and every
+# /<section>/<page> route (tool pages and /professions/<name>). The placeholders match exactly
+# two segments, so the Open Graph images and Next's .txt payload files, which sit deeper, are
+# untouched. tests/headers.test.ts fails if a new domain hub is missing from this list.
+/
+  Content-Type: text/html; charset=utf-8
+/privacy
+  Content-Type: text/html; charset=utf-8
+/terms
+  Content-Type: text/html; charset=utf-8
+/404
+  Content-Type: text/html; charset=utf-8
+/finance
+  Content-Type: text/html; charset=utf-8
+/marketing
+  Content-Type: text/html; charset=utf-8
+/advertising
+  Content-Type: text/html; charset=utf-8
+/business
+  Content-Type: text/html; charset=utf-8
+/seo
+  Content-Type: text/html; charset=utf-8
+/content
+  Content-Type: text/html; charset=utf-8
+/design
+  Content-Type: text/html; charset=utf-8
+/data
+  Content-Type: text/html; charset=utf-8
+/developer
+  Content-Type: text/html; charset=utf-8
+/productivity
+  Content-Type: text/html; charset=utf-8
+/education
+  Content-Type: text/html; charset=utf-8
+/everyday
+  Content-Type: text/html; charset=utf-8
+/health
+  Content-Type: text/html; charset=utf-8
+/math
+  Content-Type: text/html; charset=utf-8
+/files
+  Content-Type: text/html; charset=utf-8
+/construction
+  Content-Type: text/html; charset=utf-8
+/:section/:page
+  Content-Type: text/html; charset=utf-8
+
+# Text files: say UTF-8 explicitly.
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8

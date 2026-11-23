@@ -17,7 +17,7 @@ const SAMPLES = [
   {
     href: "/developer/json-formatter",
     name: "JSON Formatter",
-    input: `{"name":"toolz","tools":${TOOLS.length}}`,
+    input: `{"name":"sumly","tools":${TOOLS.length}}`,
     output: "Valid JSON, 4 lines",
   },
   {
@@ -41,7 +41,8 @@ export function HomePage() {
       <section className="pb-14 pt-12 sm:pb-16 sm:pt-20">
         <h1 className="max-w-5xl text-display-xl">Bring what you&apos;ve got. Leave with what you need.</h1>
         <p className="mt-8 text-lg text-muted-foreground">
-          Search {TOOLS.length} tools across {DOMAINS.length} domains. Free, with no sign-up.
+          Whatever you&apos;ve got, a number to work out, a file to convert or a draft to check, you leave with
+          what you need. Search {TOOLS.length} tools across {DOMAINS.length} domains. Free, with no sign-up.
         </p>
         <div className="mt-2 flex max-w-4xl flex-wrap gap-2">
           <button
@@ -140,6 +141,61 @@ export function HomePage() {
               <span className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">{p.blurb}</span>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section id="good-to-know" className="scroll-mt-20 pb-16" aria-labelledby="good-to-know-title">
+        <h2 id="good-to-know-title" className="text-display-md">
+          Good to know
+        </h2>
+        <div className="mt-4 grid gap-2 sm:grid-cols-2">
+          <div className="rounded-xl bg-card p-5">
+            <h3 className="font-sans font-semibold tracking-normal">Is Sumly really free?</h3>
+            <p className="mt-2 leading-relaxed text-muted-foreground">
+              Yes. All {TOOLS.length} tools are free, with no account and no sign-up. The site may carry ads, placed
+              below the tools and never in the way of one.
+            </p>
+          </div>
+          <div className="rounded-xl bg-card p-5">
+            <h3 className="font-sans font-semibold tracking-normal">Do my numbers leave my device?</h3>
+            <p className="mt-2 leading-relaxed text-muted-foreground">
+              No. Calculations, file conversions and previews run in your browser, so what you type or drop in is not
+              sent to our servers. Some tools keep your inputs in the page address so you can share a scenario;
+              anyone you send that link to can see those values.
+            </p>
+          </div>
+          <div className="rounded-xl bg-card p-5">
+            <h3 className="font-sans font-semibold tracking-normal">What can I do here?</h3>
+            <p className="mt-2 leading-relaxed text-muted-foreground">
+              Work out loan payments, profit margins and return on ad spend. Format JSON, build a QR code or check
+              colour contrast. Merge, split and convert PDFs and spreadsheets. Convert units and currencies. The
+              tools sit in {DOMAINS.length} domains, from finance and marketing to developer, design and everyday
+              utilities.
+            </p>
+          </div>
+          <div className="rounded-xl bg-card p-5">
+            <h3 className="font-sans font-semibold tracking-normal">How accurate are the results?</h3>
+            <p className="mt-2 leading-relaxed text-muted-foreground">
+              Each calculator explains its formula and shows a worked example on the page, so you can check the
+              maths yourself. Results are estimates for planning, not financial, tax or medical advice. Currency
+              rates are indicative, so enter your bank or card rate when you need exact figures.
+            </p>
+          </div>
+          <div className="rounded-xl bg-card p-5">
+            <h3 className="font-sans font-semibold tracking-normal">Where do I start?</h3>
+            <p className="mt-2 leading-relaxed text-muted-foreground">
+              Type what you want to do into the search box, or press ⌘K or / from any page. You can also browse by
+              domain, or by profession: marketers, accountants, business owners, contractors, designers,
+              developers, project managers and students each have a page with the tools they reach for most.
+            </p>
+          </div>
+          <div className="rounded-xl bg-card p-5">
+            <h3 className="font-sans font-semibold tracking-normal">Can I save the tools I use often?</h3>
+            <p className="mt-2 leading-relaxed text-muted-foreground">
+              Yes. Star a tool to pin it for quick access. Stars are stored in your browser on this device, not in an
+              account, so they stay private and clearing your browser data removes them.
+            </p>
+          </div>
         </div>
       </section>
     </div>

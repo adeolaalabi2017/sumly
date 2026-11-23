@@ -45,6 +45,8 @@ export interface Tool {
   description: string;
   tags: string[];
   popular?: boolean;
+  /** Optional <title> override; the "| Sumly" suffix is added by the layout template */
+  metaTitle?: string;
 }
 
 /** Tool-page copy, stored separately from Tool so it only ships with its own page. */
