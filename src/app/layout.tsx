@@ -10,6 +10,7 @@ import { PwaRegister } from "@/components/site/pwa-register";
 import { Analytics } from "@/components/site/analytics";
 import { CurrencyProvider } from "@/components/site/currency";
 import { DOMAINS, TOOLS } from "@/lib/registry";
+import { siteDescription, siteTitle } from "@/lib/site-meta";
 
 const TOOL_COUNT = TOOLS.length;
 const DOMAIN_COUNT = DOMAINS.length;
@@ -50,11 +51,10 @@ export const metadata: Metadata = {
     apple: "/icon-192.png",
   },
   title: {
-    default: "Sumly — Professional tools, organized by domain",
+    default: siteTitle(TOOL_COUNT),
     template: "%s | Sumly",
   },
-  description:
-    `Free professional calculators and utilities for finance, marketing, business, developers and students. ${TOOL_COUNT} tools across ${DOMAIN_COUNT} domains.`,
+  description: siteDescription(TOOL_COUNT, DOMAIN_COUNT),
   keywords: [
     "calculators",
     "marketing tools",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Sumly" }],
   openGraph: {
-    title: "Sumly — Professional tools, organized by domain",
+    title: siteTitle(TOOL_COUNT),
     description:
       `Every tool your work needs — organized by professional domain, not buried in a random list. ${TOOL_COUNT} tools across finance, marketing, advertising, business, SEO, content, design, data, development, productivity, education and everyday utilities.`,
     siteName: "Sumly",
