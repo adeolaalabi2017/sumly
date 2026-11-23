@@ -127,10 +127,10 @@ export function BudgetCalculator() {
 /* ================================================================== */
 
 export function LoanMortgageCalculator() {
-  const [amount, setAmount] = React.useState("350,000");
-  const [rate, setRate] = React.useState("6.25");
-  const [years, setYears] = React.useState("30");
-  const [extra, setExtra] = React.useState("0");
+  // Inputs live in the page address (?amount=…&rate=…) once the visitor edits them, so the
+  // Share menu sends a link that reopens with the same numbers.
+  const [params, setParams] = useToolState({ amount: "350,000", rate: "6.25", years: "30", extra: "0" });
+  const { amount, rate, years, extra } = params;
 
   const P = num(amount);
   const r = num(rate) / 100 / 12;
@@ -183,13 +183,19 @@ export function LoanMortgageCalculator() {
     <CalcLayout
       inputs={
         <FieldGrid>
-          <NumberField label="Loan amount" value={amount} onChange={setAmount} prefix="$" className="sm:col-span-2" />
-          <NumberField label="Annual interest rate" value={rate} onChange={setRate} suffix="%" />
-          <NumberField label="Term" value={years} onChange={setYears} suffix="yrs" />
+          <NumberField
+            label="Loan amount"
+            value={amount}
+            onChange={(v) => setParams({ amount: v })}
+            prefix="$"
+            className="sm:col-span-2"
+          />
+          <NumberField label="Annual interest rate" value={rate} onChange={(v) => setParams({ rate: v })} suffix="%" />
+          <NumberField label="Term" value={years} onChange={(v) => setParams({ years: v })} suffix="yrs" />
           <NumberField
             label="Extra monthly payment"
             value={extra}
-            onChange={setExtra}
+            onChange={(v) => setParams({ extra: v })}
             prefix="$"
             hint="Optional — added to every payment"
             className="sm:col-span-2"
