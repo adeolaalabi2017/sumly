@@ -1,4 +1,13 @@
-# These tools lived under Education before the Math domain existed.
+# These tools lived under Education before the Math domain existed. Cloudflare matches exact
+# rules faster when they come before rules with placeholders.
 /education/percentage-calculator /math/percentage-calculator 301
 /education/fraction-calculator /math/fraction-calculator 301
 /education/sig-fig-calculator /math/sig-fig-calculator 301
+
+# Next names dynamic-route page payloads with "$" (for example __next.$d$domain.__PAGE__.txt).
+# Cloudflare answers a literal "$" with a 307 to "%24", which doubles each prefetch and fills
+# Google's crawl stats with redirects. These 200 rules rewrite internally instead.
+# tests/redirects.test.ts fails if a dynamic route has no matching rule.
+/:domain/__next.$d$domain.__PAGE__.txt /:domain/__next.%24d%24domain.__PAGE__.txt 200
+/:domain/:tool/__next.$d$domain.$d$tool.__PAGE__.txt /:domain/:tool/__next.%24d%24domain.%24d%24tool.__PAGE__.txt 200
+/professions/:profession/__next.professions.$d$profession.__PAGE__.txt /professions/:profession/__next.professions.%24d%24profession.__PAGE__.txt 200
